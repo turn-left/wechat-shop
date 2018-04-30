@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+    <script th:href="@{/js/jquery.min.js}"></script>
+    <script type="text/javascript" src="../static/js/login.js"></script>
+    <link type="text/css" th:href="@{css/login.css}" rel="stylesheet" />
+    <!--<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>-->
+</head>
+<body>
+<div id="divID">
+    <div style="background-color:transparent;">
+        <form id="ff" method="post" th:action="@{/login}" th:method="post">
+            <ul class="reg-box">
+                <li>
+                    <label >账    号</label>
+                    <input value="请输入手机号码" type="text" name="accName" class="account" maxlength="11" style="color:#999;" onBlur="textBlur(this)" onFocus="textFocus(this)"/>
+                    <span class="error error5"></span>
+                </li>
+                <li>
+                    <label >密    码</label>
+                    <input value="请输入密码" type="password" name="accPassWord" class="admin_pwd" style="color:#999;" onBlur="textBlur(this)" onFocus="textFocus(this)"/>
+                    <span class="error error6"></span>
+                </li>
+                <li>
+                    <label >验证码</label>
+                    <input value="请输入验证码" type="text" class="sradd photokey" id="key" style="color:#999;ime-mode:disabled;-webkit-ime-mode:inactive;" onBlur="textBlur(this)" onFocus=" textFocus(this) "  />
+                    <span class="add phoKey" style="margin-top: 10px"></span>
+                    <span class="error error7"></span>
+                </li>
+            </ul>
+            <div class="sub">
+                <input type="submit" value="立即登录"/>
+            </div>
+            <div class="tishi">
+                <label>首次登录确认注册</label>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
