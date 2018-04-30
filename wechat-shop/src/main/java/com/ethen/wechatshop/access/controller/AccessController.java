@@ -19,7 +19,7 @@ import java.util.Map;
  * @author ethen
  * @since 2018-04-22
  */
-@RestController
+//@RestController
 public class AccessController {
 
     //token可由开发者可以任意填写，用作生成签名（该Token会和接口URL中包含的Token进行比对，从而验证安全性）
