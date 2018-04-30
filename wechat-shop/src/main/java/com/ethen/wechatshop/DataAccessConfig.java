@@ -5,7 +5,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 /**
- * 数据访问的配置
+ * 数据访问的配置 todo 待优化 DAO的逻辑
  */
 @Configuration
 public class DataAccessConfig {

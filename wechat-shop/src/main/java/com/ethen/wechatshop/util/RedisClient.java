@@ -4,7 +4,7 @@ import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
 /**
- * 单机版redis访问操作
+ * 单机版redis访问操作 todo 待封装 待优化
  */
 public class RedisClient {
 
