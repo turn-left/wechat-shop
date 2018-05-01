@@ -1,0 +1,183 @@
+
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>易买网 - 首页</title>
+<link rel="stylesheet" th:href="@{/css/style.css}" />
+<script type="text/javascript" th:href="@{/static/js/function.js}"></script>
+<style>
+.scroll_div {width:600px; height:62px;margin:0 auto; overflow: hidden; white-space: nowrap; background:#ffffff;}
+.scroll_div img {width:120px;height:60px;border: 0;margin: auto 8px; border:1px #efefef solid;}
+#scroll_begin, #scroll_end, #scroll_begin ul, #scroll_end ul, #scroll_begin ul li, #scroll_end ul li{display:inline;}
+</style>
+<style>
+.scroll_div {width:500px; height:100px;margin:0 auto; overflow: hidden; white-space: nowrap; background:#ffffff;}
+.scroll_div img {width:120px;height:100px;border: 0;margin: auto 8px; border:1px #efefef solid;}
+#scroll_begin, #scroll_end, #scroll_begin ul, #scroll_end ul, #scroll_begin ul li, #scroll_end ul li{display:inline;}
+</style>
+<script language="javascript">
+
+function ScrollImgLeft(){
+var speed=20
+var scroll_begin = document.getElementById("scroll_begin");
+var scroll_end = document.getElementById("scroll_end");
+var scroll_div = document.getElementById("scroll_div");
+scroll_end.innerHTML=scroll_begin.innerHTML
+function Marquee(){
+    if(scroll_end.offsetWidth-scroll_div.scrollLeft<=0)
+      scroll_div.scrollLeft-=scroll_begin.offsetWidth
+    else
+      scroll_div.scrollLeft++
+}
+var MyMar=setInterval(Marquee,speed)
+scroll_div.onmouseover=function() {clearInterval(MyMar)}
+scroll_div.onmouseout=function() {MyMar=setInterval(Marquee,speed)}
+}
+function selectname(){
+	  var name = document.getElementById("selectname").value;
+	  location.href='selectProductList?name='+name;
+}
+
+</script>
+
+
+</head>
+<body>
+<div id="header" class="wrap">
+	<div id="logo"><img src="images/logo.gif" th:href="@{/static/img/logo.gif}" /></div>
+	<div class="help"><c:if test="${name!=null}"><a href="selectdd?dd=${name.EU_USER_ID }">个人订单</a></c:if><c:if test="${name!=null}">当前用户${name.EU_USER_ID }</c:if><a href="ShopSelect" class="shopping">购物车</a><c:if test="${name==null}"><a href="login.html">登录</a></c:if><c:if test="${name!=null}"><a href="zx">退出</a></c:if><a href="register.jsp">注册</a><a href="SelallServlet">留言</a><c:if test="${name.EU_STATUS==2}"><a href="manage/index.jsp" >去后台</a></c:if></div>
+	<div class="navbar">
+		<ul class="clearfix">
+			<li class="current"><a href="indexSelect">首页</a></li>
+			<li><a href="#">图书</a></li>
+			<li><a href="#">百货</a></li>
+			<li><a href="#">品牌</a></li>
+			<li><a href="#">促销</a></li>
+		</ul>
+	</div>
+</div>
+<div id="childNav">
+	<div class="wrap">
+		<ul class="clearfix">
+			<li class="first"><a href="#">音乐</a></li>
+			<li><a href="#">影视</a></li>
+			<li><a href="#">少儿</a></li>
+			<li><a href="#">动漫</a></li>
+			<li><a href="#">小说</a></li>
+			<li><a href="#">外语</a></li>
+			<li><a href="#">数码相机</a></li>
+			<li><a href="#">笔记本</a></li>
+			<li><a href="#">羽绒服</a></li>
+			<li><a href="#">秋冬靴</a></li>
+			<li><a href="#">运动鞋</a></li>
+			<li><a href="#">美容护肤</a></li>
+			<li><a href="#">饰品</a></li>
+			<li class="last"><input type="text" id="selectname"/><a href="javascript:selectname()">搜索</a></li>
+		</ul>
+	</div>
+</div>
+<div id="main" class="wrap">
+	<div class="lefter">
+		<div class="box">
+			<h2>商品分类</h2>
+			<dl>
+				<dt><a href="selectProductList">全部商品</a></dt>
+				<c:forEach var="f" items="${flist}">
+					<dt><a href="selectProductList?fid=${f.EPC_ID }">${f.EPC_NAME }</a></dt>
+					<c:forEach var="c" items="${clist}">
+						<c:if test="${f.EPC_ID==c.EPC_PARENT_ID}">
+							<c:if test="${p.EPC_CHILD_ID!=c.EPC_ID}">
+								<dd><a href="selectProductList?cid=${c.EPC_ID }">${c.EPC_NAME }</a></dd>
+							</c:if>
+						</c:if>
+					</c:forEach> 
+				</c:forEach> 
+			</dl>
+		</div>
+		<div class="spacer"></div>
+		<div class="last-view">
+			<h2>最近浏览</h2>
+			<dl class="clearfix">
+				<c:forEach var="lastp" items="${lastlylist}">
+					<dt><a href="selectProductView?id=${lastp.EP_ID }"><img height="40" src="images/product/${lastp.EP_FILE_NAME }" /></a></dt>
+					<dd><a href="selectProductView?id=${lastp.EP_ID }">${lastp.EP_NAME }</a></dd>
+				</c:forEach>
+			</dl>
+		</div>
+	</div>
+	
+<div class="main">
+<div class="price-off">
+    <!--#####滚动区域#####-->
+    <div id="scroll_div" class="scroll_div">
+      <div id="scroll_begin">
+        <ul>
+          <li><a href="selectProductView?id=667"><img  src="/160jsp8XM/images/product/b6.jpg" /></a></li>
+          <li><a href="selectProductView?id=670"><img  src="/160jsp8XM/images/product/dn5.jpg" /></a></li>
+          <li><a href="selectProductView?id=672"><img  src="/160jsp8XM/images/product/f4.jpg" /></a></li>
+          <li><a href="selectProductView?id=674"><img  src="/160jsp8XM/images/product/j3.jpg" /></a></li>
+          <li><a href="selectProductView?id=601"><img  src="/160jsp8XM/images/product/10.jpg" /></a></li>
+          <li><a href="selectProductView?id=683"><img  src="/160jsp8XM/images/product/m4.jpg" /></a></li>
+          <li><a href="selectProductView?id=679"><img  src="/160jsp8XM/images/product/ts1.jpg" /></a></li>
+          <li><a href="selectProductView?id=678"><img  src="/160jsp8XM/images/product/j5.jpg" /></a></li>
+        </ul>
+      </div>
+      <div id="scroll_end"></div>
+    </div>
+    <!--#####滚动区域#####-->
+</div>
+<script type="text/javascript">ScrollImgLeft();</script>
+</div>
+	<div class="main">
+		<div class="price-off">
+			<h2>今日特价</h2>
+			<ul class="product clearfix">
+				<c:forEach var="tp" items="${tlist}">
+					<li>
+						<dl>
+							<dt><a href="selectProductView?id=${tp.EP_ID }" target="_blank"><img src="images/product/${tp.EP_FILE_NAME }" /></a></dt>
+							<dd class="title"><a href="selectProductView?id=${tp.EP_ID }" target="_blank">${tp.EP_DESCRIPTION }</a></dd>
+							<dd class="price">${tp.EP_PRICE }.00</dd>
+						</dl>
+					</li>
+				</c:forEach>
+			</ul>
+		</div>
+		<div class="side">
+			<div class="news-list">
+				<h4>新闻动态</h4>
+				<ul>
+					<c:forEach var="n" items="${nlist}">
+						<li><a href="newsSelect2?id=${n.EN_ID }" target="_blank">${n.EN_TITLE }</a></li>
+					</c:forEach>
+				</ul>
+			</div>
+			<div class="spacer"></div>
+			
+		</div>
+		<div class="spacer clear"></div>
+		<div class="hot">
+			<h2>热卖推荐</h2>
+			<ul class="product clearfix">
+				<c:forEach var="hotp" items="${hlist}">
+					<li>
+						<dl>
+							<dt><a href="selectProductView?id=${hotp.EP_ID }" target="_blank"><img src="images/product/${hotp.EP_FILE_NAME }" /></a></dt>
+							<dd class="title"><a href="selectProductView?id=${hotp.EP_ID }" target="_blank">${hotp.EP_DESCRIPTION}</a></dd>
+							<dd class="price">${hotp.EP_PRICE }.00</dd>
+						</dl>
+					</li>
+				</c:forEach>
+			</ul>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+<div id="footer">
+	Copyright &copy; 2010 北大青鸟 All Rights Reserved. 京ICP证1000001号
+</div>
+</body>
+</html>
+
+

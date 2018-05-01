@@ -1,43 +1,84 @@
-<!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" >
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8" />
-    <title>Title</title>
-    <script th:href="@{/js/jquery.min.js}"></script>
-    <script type="text/javascript" src="../static/js/login.js"></script>
-    <link type="text/css" th:href="@{css/login.css}" rel="stylesheet" />
-    <!--<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>-->
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>易买网 - 首页</title>
+<link type="text/css" rel="stylesheet" th:href="@{/static/css/style.css}" />
+<script type="text/javascript" th:href="@{/static/js/function.js}"></script>
+<script type="text/javascript">
+function selectname(){
+	  var name = document.getElementById("selectname").value;
+	  location.href='selectProductList?name='+name;
+}
+</script>
 </head>
 <body>
-<div id="divID">
-    <div style="background-color:transparent;">
-        <form id="ff" method="post" th:action="@{/login}" th:method="post">
-            <ul class="reg-box">
-                <li>
-                    <label >账    号</label>
-                    <input value="请输入手机号码" type="text" name="accName" class="account" maxlength="11" style="color:#999;" onBlur="textBlur(this)" onFocus="textFocus(this)"/>
-                    <span class="error error5"></span>
-                </li>
-                <li>
-                    <label >密    码</label>
-                    <input value="请输入密码" type="password" name="accPassWord" class="admin_pwd" style="color:#999;" onBlur="textBlur(this)" onFocus="textFocus(this)"/>
-                    <span class="error error6"></span>
-                </li>
-                <li>
-                    <label >验证码</label>
-                    <input value="请输入验证码" type="text" class="sradd photokey" id="key" style="color:#999;ime-mode:disabled;-webkit-ime-mode:inactive;" onBlur="textBlur(this)" onFocus=" textFocus(this) "  />
-                    <span class="add phoKey" style="margin-top: 10px"></span>
-                    <span class="error error7"></span>
-                </li>
-            </ul>
-            <div class="sub">
-                <input type="submit" value="立即登录"/>
-            </div>
-            <div class="tishi">
-                <label>首次登录确认注册</label>
-            </div>
-        </form>
-    </div>
+<div id="header" class="wrap">
+	<div id="logo"><img src="images/logo.gif" th:href="@{/static/img/logo.gif}" /></div>
+	<div class="help"><c:if test="${name!=null}"><a href="selectdd?dd=${name.EU_USER_ID }">个人订单</a></c:if><c:if test="${name!=null}">当前用户${name.EU_USER_ID }</c:if><a href="ShopSelect" class="shopping">购物车</a><c:if test="${name==null}"><a href="login.jsp">登录</a></c:if><c:if test="${name!=null}"><a href="zx">退出</a></c:if><a href="register.jsp">注册</a><a href="SelallServlet">留言</a><c:if test="${name.EU_STATUS==2}"><a href="manage/index.jsp" >去后台</a></c:if></div>
+	<div class="navbar">
+		<ul class="clearfix">
+			<li class="current"><a href="indexSelect">首页</a></li>
+			<li><a href="#">图书</a></li>
+			<li><a href="#">百货</a></li>
+			<li><a href="#">品牌</a></li>
+			<li><a href="#">促销</a></li>
+		</ul>
+	</div>
+</div>
+<div id="childNav">
+	<div class="wrap">
+		<ul class="clearfix">
+			<li class="first"><a href="#">音乐</a></li>
+			<li><a href="#">影视</a></li>
+			<li><a href="#">少儿</a></li>
+			<li><a href="#">动漫</a></li>
+			<li><a href="#">小说</a></li>
+			<li><a href="#">外语</a></li>
+			<li><a href="#">数码相机</a></li>
+			<li><a href="#">笔记本</a></li>
+			<li><a href="#">羽绒服</a></li>
+			<li><a href="#">秋冬靴</a></li>
+			<li><a href="#">运动鞋</a></li>
+			<li><a href="#">美容护肤</a></li>
+			<li><a href="#">饰品</a></li>
+			<li class="last"><input type="text" id="selectname"/><a href="javascript:selectname()">搜索</a></li>
+		</ul>
+	</div>
+</div>
+<div id="register" class="wrap">
+	<div class="shadow">
+		<em class="corner lb"></em>
+		<em class="corner rt"></em>
+		<div class="box">
+			<h1>欢迎回到易买网</h1>
+			<form id="loginForm" method="post" action="login" onsubmit="return checkForm(this)">
+				<table>
+					<tr>
+						<td class="field">用户名：</td>
+						<td><input class="text" type="text" name="userName" onfocus="FocusItem(this)" onblur="CheckItem(this);" /><span></span></td>
+					</tr>
+					<tr>
+						<td class="field">登录密码：</td>
+						<td><input class="text" type="password" id="passWord" name="passWord" onfocus="FocusItem(this)" onblur="CheckItem(this);" /><span></span></td>
+					</tr>
+					<tr>
+						<td class="field">验证码：</td>
+						<td><input class="text verycode" type="text" name="veryCode" onfocus="FocusItem(this)" onblur="Checknum(this);" /><img id="veryCode" alt="看不清,换一张" style="cursor:hand;" src="usernum?<%=new Date().getTime() %>" onclick="change(this)" /><span id="msg"></span></td>
+					</tr>
+					<tr>
+						<td></td>
+						<td><label class="ui-green"><input type="submit" name="submit"id="sub" value="立即登录" /></label></td>
+					</tr>
+				</table>
+			</form>
+		</div>
+	</div>
+	<div class="clear"></div>
+</div>
+<div id="footer">
+	Copyright &copy; 2010 北大青鸟 All Rights Reserved. 京ICP证1000001号
 </div>
 </body>
 </html>
+
