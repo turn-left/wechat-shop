@@ -40,20 +40,20 @@ delete from EASYBUY_SHOP;
 commit;
  
 insert into EASYBUY_SHOP (es_id, es_ep_file_name, es_ep_name, es_ep_price, es_eod_quantity, es_ep_stock, es_ep_id, es_eu_user_id, es_valid)
-values (43, 'b7.jpg', '»¤¼×Æ÷', 4, 1, 10, 669, 'zxc', 2);
+values (43, 'b7.jpg', 'æŠ¤ç”²å™¨', 4, 1, 10, 669, 'zxc', 2);
 insert into EASYBUY_SHOP (es_id, es_ep_file_name, es_ep_name, es_ep_price, es_eod_quantity, es_ep_stock, es_ep_id, es_eu_user_id, es_valid)
-values (1, '1.jpg', 'ÄÌ·Û', 20, 1, 196, 601, 'ss', 2);
+values (1, '1.jpg', 'å¥¶ç²‰', 20, 1, 196, 601, 'ss', 2);
 insert into EASYBUY_SHOP (es_id, es_ep_file_name, es_ep_name, es_ep_price, es_eod_quantity, es_ep_stock, es_ep_id, es_eu_user_id, es_valid)
-values (44, '8.jpg', 'ÂÃĞĞ°ü', 2, 2, 10, 639, 'zxc', 2);
+values (44, '8.jpg', 'æ—…è¡ŒåŒ…', 2, 2, 10, 639, 'zxc', 2);
 insert into EASYBUY_SHOP (es_id, es_ep_file_name, es_ep_name, es_ep_price, es_eod_quantity, es_ep_stock, es_ep_id, es_eu_user_id, es_valid)
-values (47, 'b2.jpg', 'ÌÇ¹ûÆ¿', 5, 500, 500, 668, 'admin', 2);
+values (47, 'b2.jpg', 'ç³–æœç“¶', 5, 500, 500, 668, 'admin', 2);
 insert into EASYBUY_SHOP (es_id, es_ep_file_name, es_ep_name, es_ep_price, es_eod_quantity, es_ep_stock, es_ep_id, es_eu_user_id, es_valid)
-values (46, 'dn5.jpg', '»ªË¶µçÄÔ', 3700, 4, 100, 670, 'admin', 2);
+values (46, 'dn5.jpg', 'åç¡•ç”µè„‘', 3700, 4, 100, 670, 'admin', 2);
 insert into EASYBUY_SHOP (es_id, es_ep_file_name, es_ep_name, es_ep_price, es_eod_quantity, es_ep_stock, es_ep_id, es_eu_user_id, es_valid)
-values (64, 'ts1.jpg', '´øµÆ', 20, 1, 20, 679, 'zxc', 2);
+values (64, 'ts1.jpg', 'å¸¦ç¯', 20, 1, 20, 679, 'zxc', 2);
 insert into EASYBUY_SHOP (es_id, es_ep_file_name, es_ep_name, es_ep_price, es_eod_quantity, es_ep_stock, es_ep_id, es_eu_user_id, es_valid)
-values (65, '10.jpg', 'ÄÌ·Û', 20, 3, 195, 601, 'zxc', 2);
+values (65, '10.jpg', 'å¥¶ç²‰', 20, 3, 195, 601, 'zxc', 2);
 insert into EASYBUY_SHOP (es_id, es_ep_file_name, es_ep_name, es_ep_price, es_eod_quantity, es_ep_stock, es_ep_id, es_eu_user_id, es_valid)
-values (66, '8.jpg', 'ÂÃĞĞ°ü', 2, 10, 10, 639, 'zxc', 2);
+values (66, '8.jpg', 'æ—…è¡ŒåŒ…', 2, 10, 10, 639, 'zxc', 2);
 commit;
  

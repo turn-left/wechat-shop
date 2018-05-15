@@ -45,7 +45,7 @@ function CheckItem(obj)
 				return false;
 			}
 			break;
-		case "veryCode":
+		case "veriCode":
 			if(obj.value == "") {
 				msgBox.innerHTML = "验证码不能为空";
 				msgBox.className = "error";
@@ -58,7 +58,9 @@ function CheckItem(obj)
 
 function checkForm(frm)
 {
-	var els = frm.getElementsByTagName("input");
+    alert("hey!001")
+    var els = frm.getElementsByTagName("input");
+	alert("hey!")
 	for(var i=0; i<els.length; i++) {
 		//if(typeof(els[i].getAttribute("onblur")) == "string") {
 		if(typeof(els[i].getAttribute("onblur")) == "function") {
@@ -146,7 +148,7 @@ function goBuy(id, price)
 		newCookie = id;
 	}
 	setCookie("product", newCookie);
-	location.href = "shopping.jsp";
+	location.href = "shopping.webapp";
 }
 
 function delShopping(id)

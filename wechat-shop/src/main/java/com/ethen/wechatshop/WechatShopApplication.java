@@ -9,6 +9,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
 
+import java.net.InetAddress;
 import java.util.List;
 import java.util.Map;
 
@@ -45,18 +46,10 @@ public class WechatShopApplication implements CommandLineRunner {
 	 */
 	@Override
 	public void run(String... args) throws Exception {
-
-		List<Map<String,Object>> list = sqlSessionTemplate.selectList("test_select");
-		System.out.println("list: " + list);
-		redisService.set("test_001","一个redis value.");
-		redisService.set("test_002","redis value test_002");
-		System.err.println("test_001: " + redisService.get("test_001"));
-		System.err.println("test_002: " + redisService.get("test_002"));
-
-
-		redisClient.set("test-key-0428","hello redis!i am coming!",20);
-		String value  = redisClient.get("test-key-0428");
-		System.err.println("get redis value: " + value);
+		//获取的是本地的IP地址
+		InetAddress address = InetAddress.getLocalHost();
+		String hostIp = address.getHostAddress();
+		System.err.println("当前服务器ip: " + hostIp);
 
 	}
 }
