@@ -43,6 +43,6 @@ public class LoginConroller {
         Map<String, Object> testMap = new HashMap<>();
         testMap.put("CODE", "0000");
         testMap.put("MSG", "success!");
-        return "login";
+        return "index";
     }
 }

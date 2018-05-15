@@ -74,5 +74,3 @@ function change(sel,sta){
 		sel.selectedIndex = sta-1;
 	}
 }
-
-

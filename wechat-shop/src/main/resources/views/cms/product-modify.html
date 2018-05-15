@@ -34,12 +34,12 @@ function check2() {
 	<div class="help"><a href="../indexSelect">����ǰ̨ҳ��</a></div>
 	<div class="navbar">
 		<ul class="clearfix">
-			<li><a href="index.html">��ҳ</a></li>
-			<li><a href="user">�û�</a></li>
-			<li class="current"><a href="productSelect">��Ʒ</a></li>
-			<li><a href="ordersel">����</a></li>
-			<li><a href="SelManage">����</a></li>
-			<li><a href="newsselect">����</a></li>
+			<li class="current"><a href="index.html" th:href="@{/cms}">首页</a></li>
+			<li><a href="/cms/user" th:href="@{/cms/user}">用户</a></li>
+			<li><a href="productSelect" th:href="@{/cms/product}">商品</a></li>
+			<li><a href="ordersel" th:href="@{/cms/order}">订单</a></li>
+			<li><a href="SelManage" th:href="@{/cms/guestbook}">留言</a></li>
+			<li><a href="newsselect" th:href="@{/cms/news}">新闻</a></li>
 		</ul>
 	</div>
 </div>
@@ -56,7 +56,7 @@ function check2() {
 		<div class="box">
 			<dl>
 				<dt>�û�����</dt>
-				<dd><em><a href="user-add.jsp">����</a></em><a href="user">�û�����</a></dd>
+				<dd><em><a href="user-add.html">����</a></em><a href="user">�û�����</a></dd>
 				<dt>��Ʒ��Ϣ</dt>
 				<dd><em><a href="productClassAdd">����</a></em><a href="productClass">�������</a></dd>
 				<dd><em><a href="productAdd">����</a></em><a href="productSelect">��Ʒ����</a></dd>
@@ -65,7 +65,7 @@ function check2() {
 				<dt>���Թ���</dt>
 				<dd><a href="SelManage">���Թ���</a></dd>
 				<dt>���Ź���</dt>
-				<dd><em><a href="news-add.jsp">����</a></em><a href="newsselect">���Ź���</a></dd>
+				<dd><em><a href="news-add.html">����</a></em><a href="newsselect">���Ź���</a></dd>
 			</dl>
 		</div>
 	</div>

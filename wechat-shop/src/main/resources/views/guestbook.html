@@ -16,32 +16,32 @@ function selectname(){
 <body>
 <div id="header" class="wrap">
 	<div id="logo"><img src="images/logo.gif" /></div>
-	<div class="help"><c:if test="${name!=null}"><a href="selectdd?dd=${name.EU_USER_ID }">个人订单</a></c:if><c:if test="${name!=null}">当前用户${name.EU_USER_ID }</c:if><a href="ShopSelect" class="shopping">购物车</a><c:if test="${name==null}"><a href="login.html">登录</a></c:if><c:if test="${name!=null}"><a href="zx">退出</a></c:if><a href="register.jsp">注册</a><a href="SelallServlet">留言</a><c:if test="${name.EU_STATUS==2}"><a href="cms/index.html" >去后台</a></c:if></div>
+	<div class="help"><c:if test="${name!=null}"><a href="selectdd?dd=${name.EU_USER_ID }">个人订单</a></c:if><c:if test="${name!=null}">当前用户${name.EU_USER_ID }</c:if><a href="ShopSelect" class="shopping">购物车</a><c:if test="${name==null}"><a href="login.html">登录</a></c:if><c:if test="${name!=null}"><a href="zx">退出</a></c:if><a href="register.html">注册</a><a href="SelallServlet">留言</a><c:if test="${name.EU_STATUS==2}"><a href="cms/index.html" >去后台</a></c:if></div>
 	<div class="navbar">
 		<ul class="clearfix">
-			<li class="current"><a href="indexSelect">首页</a></li>
-			<li><a href="product-list.jsp">图书</a></li>
-			<li><a href="product_list.jsp">百货</a></li>
-			<li><a href="product_list.jsp">品牌</a></li>
-			<li><a href="product_list.jsp">促销</a></li>
+			<li class="current"><a href="indexSelect" th:href="@{/}">首页</a></li>
+			<li><a href="product-list.html">图书</a></li>
+			<li><a href="product_list.html">百货</a></li>
+			<li><a href="product_list.html">品牌</a></li>
+			<li><a href="product_list.html">促销</a></li>
 		</ul>
 	</div>
 </div>
 <div id="childNav">
 	<div class="wrap">
 		<ul class="clearfix">
-			<li class="first"><a href="product_list.jsp">音乐</a></li>
-			<li><a href="product_list.jsp">影视</a></li>
-			<li><a href="product_list.jsp">少儿</a></li>
-			<li><a href="product_list.jsp">动漫</a></li>
-			<li><a href="product_list.jsp">小说</a></li>
-			<li><a href="product_list.jsp">外语</a></li>
-			<li><a href="product_list.jsp">数码相机</a></li>
-			<li><a href="product_list.jsp">笔记本</a></li>
-			<li><a href="product_list.jsp">羽绒服</a></li>
-			<li><a href="product_list.jsp">秋冬靴</a></li>
-			<li><a href="product_list.jsp">运动鞋</a></li>
-			<li><a href="product_list.jsp">美容护肤</a></li>
+			<li class="first"><a href="product_list.html">音乐</a></li>
+			<li><a href="product_list.html">影视</a></li>
+			<li><a href="product_list.html">少儿</a></li>
+			<li><a href="product_list.html">动漫</a></li>
+			<li><a href="product_list.html">小说</a></li>
+			<li><a href="product_list.html">外语</a></li>
+			<li><a href="product_list.html">数码相机</a></li>
+			<li><a href="product_list.html">笔记本</a></li>
+			<li><a href="product_list.html">羽绒服</a></li>
+			<li><a href="product_list.html">秋冬靴</a></li>
+			<li><a href="product_list.html">运动鞋</a></li>
+			<li><a href="product_list.html">美容护肤</a></li>
 			<li><a href="#">饰品</a></li>
 			<li class="last"><input type="text" id="selectname"/><a href="javascript:selectname()">搜索</a></li>
 		</ul>
