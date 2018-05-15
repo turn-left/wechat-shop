@@ -1,10 +1,9 @@
-package com.ethen.wechatshop.access.task;
+package com.ethen.wechatshop.portal.task;
 
-import com.ethen.wechatshop.access.vo.AccessToken;
+import com.ethen.wechatshop.portal.vo.AccessToken;
 import com.ethen.wechatshop.common.CacheUtil;
 import com.ethen.wechatshop.common.CommonConstant;
 import org.springframework.scheduling.annotation.Scheduled;
-import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 //@Component

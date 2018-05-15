@@ -1,4 +1,4 @@
-package com.ethen.wechatshop.cms;
+package com.ethen.wechatshop.cms.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;

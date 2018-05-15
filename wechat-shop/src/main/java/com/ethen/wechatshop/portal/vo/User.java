@@ -1,4 +1,4 @@
-package com.ethen.wechatshop.access.vo;
+package com.ethen.wechatshop.portal.vo;
 
 import java.util.Date;
 

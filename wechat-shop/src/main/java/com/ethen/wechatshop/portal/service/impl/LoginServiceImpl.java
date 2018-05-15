@@ -1,7 +1,7 @@
-package com.ethen.wechatshop.access.service.impl;
+package com.ethen.wechatshop.portal.service.impl;
 
-import com.ethen.wechatshop.access.service.LoginService;
-import com.ethen.wechatshop.access.vo.User;
+import com.ethen.wechatshop.portal.service.LoginService;
+import com.ethen.wechatshop.portal.vo.User;
 import com.ethen.wechatshop.util.RedisClient;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.mybatis.spring.SqlSessionTemplate;

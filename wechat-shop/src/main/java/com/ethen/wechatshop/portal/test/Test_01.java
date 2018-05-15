@@ -1,4 +1,4 @@
-package com.ethen.wechatshop.access.test;
+package com.ethen.wechatshop.portal.test;
 
 import java.sql.Date;
 import java.sql.Time;

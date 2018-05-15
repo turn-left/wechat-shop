@@ -4,12 +4,13 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>后台管理 - 易买网</title>
     <link type="text/css" rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css} "/>
-    <script type="text/javascript" src="../scripts/function-manage.js" th:href="@{/js/function-manage.js}"></script>
+    <script type="text/javascript" src="../scripts/function-manage.js" th:src="@{/js/function-manage.js}"></script>
 </head>
 <body>
 <div id="header" class="wrap">
-    <div id="logo"><img src="../images/logo.gif"  th:src="@{/img/logo.gif}"/></div>
-    <div class="help"><a href="../indexSelect" th:href="@{/}">返回前台页面</a></div>    <div class="navbar">
+    <div id="logo"><img src="../images/logo.gif" th:src="@{/img/logo.gif}"/></div>
+    <div class="help"><a href="../indexSelect" th:href="@{/}">返回前台页面</a></div>
+    <div class="navbar">
         <ul class="clearfix">
             <li class="current"><a href="index.html" th:href="@{/cms}">首页</a></li>
             <li><a href="/cms/user" th:href="@{/cms/user}">用户</a></li>
@@ -32,8 +33,9 @@
     <div id="menu-mng" class="lefter">
         <div class="box">
             <dl>
-                <dt>用户管理</dt>
-                <dd><em><a href="user-add.html">新增</a></em><a href="user">用户管理</a></dd>
+                <dt><a th:href="@{/cms/user/findAll}">用户管理</a></dt>
+                <dd><em><a href="user-add.html">新增</a></em>
+                    <a href="user">用户管理</a></dd>
                 <dt>商品信息</dt>
                 <dd><em><a href="productClassAdd">新增</a></em><a href="productClass">分类管理</a></dd>
                 <dd><em><a href="productAdd">新增</a></em><a href="productSelect">商品管理</a></dd>
@@ -58,17 +60,17 @@
                     <th>手机</th>
                     <th>操作</th>
                 </tr>
-                <c:forEach var="u" items="${userlist}">
-                    <%--<tr>--%>
-                        <%--<td class="first w4 c">${u.EU_USER_ID }</td>--%>
-                        <%--<td class="w1 c">${u.EU_USER_NAME }</td>--%>
-                        <%--<td class="w2 c">${u.EU_SEX=='T'?'男':'女'}</td>--%>
-                        <%--<td>${u.EU_EMAIL }</td>--%>
-                        <%--<td class="w4 c">${u.EU_MOBILE }</td>--%>
-                        <%--<td class="w1 c"><a href="userupdate?id=${u.EU_USER_ID }">修改</a><c:if test="${u.EU_STATUS==1}">--%>
-                            <%--<a href="javascript:Delete('${u.EU_USER_ID }');">删除</a></c:if></td>--%>
-                    <%--</tr>--%>
-                </c:forEach>
+                <tr th:each="u:${userList}">
+                    <td class="first w4 c" th:text="${u.idNo}"/>
+                    <td class="w1 c" th:text="${u.userName}"/>
+                    <td class="w2 c" th:text="${u.sex}"/>
+                    <td class="w2 c" th:text="${u.email}"/>
+                    <td class="w2 c" th:text="${u.phoneNo}"/>
+                    <td class="w1 c"><a href="userupdate?id=${u.EU_USER_ID }">修改</a>
+                        <c:if test="${u.EU_STATUS==1}">
+                            <a href="javascript:Delete('${u.EU_USER_ID }');">删除</a></c:if>
+                    </td>
+                </tr>
             </table>
             当前:${cpage }/${tpage }页
             <a href="user?cp=1">首页</a>
@@ -77,7 +79,8 @@
             <a href="user?cp=${tpage }">尾页</a>
             <select onchange="jump(this.value)">
                 <c:forEach var="i" begin="1" end="${tpage}">
-                    <option ${i==cpage ? "selected" : "" } value="${i}">${i }页</option>
+                    <option ${i==cpage ?
+                    "selected" : "" } value="${i}">${i }页</option>
                 </c:forEach>
             </select>
         </div>

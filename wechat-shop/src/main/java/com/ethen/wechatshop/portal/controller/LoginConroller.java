@@ -1,7 +1,7 @@
-package com.ethen.wechatshop.access.controller;
+package com.ethen.wechatshop.portal.controller;
 
-import com.ethen.wechatshop.access.service.LoginService;
-import com.ethen.wechatshop.access.vo.User;
+import com.ethen.wechatshop.portal.service.LoginService;
+import com.ethen.wechatshop.portal.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -30,7 +30,7 @@ public class LoginConroller {
 
         User userInfo = loginService.login(userName, passWord);
         if (null != userInfo && !StringUtils.isEmpty(userInfo.getUserName())) {
-            model.addAttribute("userInfo",userInfo);
+            model.addAttribute("userInfo", userInfo);
             return "index";
         } else {
             return "login";
@@ -38,11 +38,20 @@ public class LoginConroller {
     }
 
 
-    @RequestMapping(value = "/",method = RequestMethod.GET)
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String index() {
         Map<String, Object> testMap = new HashMap<>();
         testMap.put("CODE", "0000");
         testMap.put("MSG", "success!");
         return "index";
+    }
+
+    /**
+     * 简单页面跳转
+     * @return
+     */
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public String toLogin() {
+        return "login";
     }
 }

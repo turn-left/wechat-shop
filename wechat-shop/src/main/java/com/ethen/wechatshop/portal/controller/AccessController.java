@@ -1,4 +1,4 @@
-package com.ethen.wechatshop.access.controller;
+package com.ethen.wechatshop.portal.controller;
 
 import com.ethen.wechatshop.common.CacheUtil;
 import com.ethen.wechatshop.common.CommonConstant;

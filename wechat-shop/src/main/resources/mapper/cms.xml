@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="cms">
+    <select id="findAll" resultType="User" parameterType="java.util.Map">
+        SELECT u.eu_user_id       "usesrId",
+               u.eu_user_name     "userName",
+               u.eu_sex           "sex",
+               u.eu_birthday      "birthday",
+               u.eu_mobile        "phoneNo",
+               u.eu_identity_code "idNo",
+               u.eu_email         "email",
+               u.eu_address       "address",
+               u.eu_status        "status"
+          FROM easybuy_user u
+    </select>
+
+    <select id="findTotalCount">
+        SELECT COUNT(1) FROM easybuy_user
+    </select>
+</mapper>

@@ -1,6 +1,6 @@
-package com.ethen.wechatshop.access.service;
+package com.ethen.wechatshop.portal.service;
 
-import com.ethen.wechatshop.access.vo.User;
+import com.ethen.wechatshop.portal.vo.User;
 
 public interface LoginService {
 
