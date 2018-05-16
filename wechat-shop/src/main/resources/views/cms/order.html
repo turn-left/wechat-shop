@@ -9,16 +9,7 @@
 <body>
 <div id="header" class="wrap">
     <div id="logo"><img src="../images/logo.gif" th:src="@{/img/logo.gif}"/></div>
-    <div class="help"><a href="../indexSelect" th:href="@{/}">返回前台页面</a></div>    <!--<div class="navbar">-->
-    <!--<ul class="clearfix">-->
-    <!--<li><a href="index.html">首页</a></li>-->
-    <!--<li><a href="user">用户</a></li>-->
-    <!--<li><a href="productSelect">商品</a></li>-->
-    <!--<li class="current"><a href="ordersel">订单</a></li>-->
-    <!--<li><a href="SelManage">留言</a></li>-->
-    <!--<li><a href="newsselect">新闻</a></li>-->
-    <!--</ul>-->
-    <!--</div>-->
+    <div class="help"><a href="../indexSelect" th:href="@{/}">返回前台页面</a></div>
     <div class="navbar">
         <ul class="clearfix">
             <li><a href="index.html" th:href="@{/cms}">首页</a></li>
@@ -43,16 +34,16 @@
         <div class="box">
             <dl>
                 <dt>用户管理</dt>
-                <dd><em><a href="user-add.html">新增</a></em><a href="user">用户管理</a></dd>
+                <dd><em><a href="user-add.html">新增</a></em><a href="user" th:href="@{/cms/user}">用户管理</a></dd>
                 <dt>商品信息</dt>
-                <dd><em><a href="productClassAdd">新增</a></em><a href="productClass">分类管理</a></dd>
-                <dd><em><a href="productAdd">新增</a></em><a href="productSelect">商品管理</a></dd>
+                <dd><em><a href="productClassAdd">新增</a></em><a href="productClass" th:href="@{/cms/productClass}">分类管理</a></dd>
+                <dd><em><a href="productAdd">新增</a></em><a href="productSelect" th:href="@{/cms/product}">商品管理</a></dd>
                 <dt>订单管理</dt>
-                <dd><a href="ordersel">订单管理</a></dd>
+                <dd><a href="ordersel" th:href="@{/cms/order}">订单管理</a></dd>
                 <dt>留言管理</dt>
-                <dd><a href="SelManage">留言管理</a></dd>
+                <dd><a href="SelManage" th:href="@{/cms/guestbook}">留言管理</a></dd>
                 <dt>新闻管理</dt>
-                <dd><em><a href="news-add.html">新增</a></em><a href="newsselect">新闻管理</a></dd>
+                <dd><em><a href="news-add.html">新增</a></em><a href="newsselect" th:href="@{/cms/news}">新闻管理</a></dd>
             </dl>
         </div>
     </div>
@@ -61,30 +52,34 @@
         <div class="manage">
             <div class="search">
                 <form method="get">
-                    订单号：<input type="text" class="text" name="orderId"/> 订货人：<input type="text" class="text"
-                                                                                    name="userName"/> <label
-                        class="ui-blue"><input type="submit" name="submit" value="查询"/></label>
+                    订单号：<input type="text" class="text" name="orderId"/>
+                    订货人：<input type="text" class="text" name="userName"/>
+                    <label class="ui-blue"><input type="submit" name="submit" value="查询"/></label>
                 </form>
             </div>
             <div class="spacer"></div>
             <table class="list">
                 <tr>
-                    <th>ID</th>
-                    <th>姓名</th>
-                    <th>发货地址</th>
-                    <th>状态</th>
+                    <th>订单号</th>
+                    <th>收件人</th>
+                    <th>收货地址</th>
+                    <th>订单金额</th>
+                    <th>订单状态</th>
+                    <th>订单类型</th>
                     <th>操作</th>
                 </tr>
-                <c:forEach var="o" items="${order}">
-                    <tr>
-                        <td class="first w4 c">${o.EO_ID }</td>
-                        <td class="w1 c">${o.EO_USER_NAME }</td>
-                        <td>${o.EO_USER_ADDRESS }</td>
-                        <td class="w1 c">${o.orderStatusStr}</td>
-                        <td class="w1 c"><a href="touporder?id=${o.EO_ID }">修改</a> <a
-                                href="javascript:DeleteOder(${o.EO_ID });">删除</a></td>
-                    </tr>
-                </c:forEach>
+                <tr th:each="od:${orderList}">
+                    <td class="first w4 c" th:text="${od.orderId}"/>
+                    <td class="w1 c" th:text="${od.userName}"/>
+                    <td class="w2 c" th:text="${od.address}"/>
+                    <td class="w2 c" th:text="${od.cost}"/>
+                    <td class="w2 c" th:text="${od.orderStatus}"/>
+                    <td class="w2 c" th:text="${od.orderType}"/>
+                    <td class="w1 c"><a href="userupdate?id=${u.EU_USER_ID }">修改</a>
+                        <!--<c:if test="${u.EU_STATUS==1}">-->
+                        <a href="javascript:Delete('${u.EU_USER_ID }');">删除</a>
+                    </td>
+                </tr>
             </table>
             <!--<div class="pager">-->
             <!--当前:${cpage }/${tpage }页-->

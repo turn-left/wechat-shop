@@ -19,6 +19,7 @@
         <typeAlias alias="ArrayList" type="java.util.ArrayList"/>
         <typeAlias alias="LinkedList" type="java.util.LinkedList"/>
         <typeAlias alias="User" type="com.ethen.wechatshop.portal.vo.User"/>
+        <typeAlias alias="Order" type="com.ethen.wechatshop.order.vo.Order"/>
     </typeAliases>
     <mappers>
     </mappers>

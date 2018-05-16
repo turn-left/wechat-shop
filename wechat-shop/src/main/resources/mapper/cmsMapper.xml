@@ -19,4 +19,17 @@
     <select id="findTotalCount" resultType="java.lang.Integer">
         SELECT COUNT(1) FROM easybuy_user
     </select>
+
+    <select id="findOrderList" resultType="Order">
+        SELECT
+          eo_id           "orderId",
+          eo_user_id      "userId",
+          eo_user_name    "userName",
+          eo_user_address "address",
+          eo_create_time  "createTime",
+          eo_cost         "cost",
+          eo_status       "orderStatus",
+          eo_type         "orderType"
+        FROM easybuy_order
+    </select>
 </mapper>
