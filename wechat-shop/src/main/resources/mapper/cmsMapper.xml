@@ -16,7 +16,7 @@
           FROM easybuy_user u
     </select>
 
-    <select id="findTotalCount">
+    <select id="findTotalCount" resultType="java.lang.Integer">
         SELECT COUNT(1) FROM easybuy_user
     </select>
 </mapper>

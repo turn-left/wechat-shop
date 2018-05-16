@@ -22,7 +22,7 @@
         <a href="ShopSelect" class="shopping" th:href="@{/shopping}">购物车</a>
         <c:if test="${name==null}"><a href="login.html" th:href="@{/login}">登录</a></c:if>
         <c:if test="${name!=null}"><a href="zx">退出</a></c:if>
-        <a href="register.html">注册</a>        <a href="SelallServlet" th:href="@{/guestbook}">留言</a>
+        <a href="register.html">注册</a> <a href="SelallServlet" th:href="@{/guestbook}">留言</a>
         <c:if test="${name.EU_STATUS==2}"><a href="cms/index.html" th:href="@{/cms}">去后台</a></c:if>
     </div>
     <div class="navbar">
@@ -158,4 +158,8 @@
     Copyright &copy; 2010 ethen All Rights Reserved. 京ICP证1000001号
 </div>
 </body>
+<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+<script type="text/javascript" th:src="@{/js/jquery.min.js}"/>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"/>
+
 </html>

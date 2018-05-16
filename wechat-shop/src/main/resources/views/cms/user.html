@@ -4,7 +4,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>后台管理 - 易买网</title>
     <link type="text/css" rel="stylesheet" href="/css/style.css" th:href="@{/css/style.css} "/>
-    <script type="text/javascript" src="../scripts/function-manage.js" th:src="@{/js/function-manage.js}"></script>
+    <script type="text/javascript" th:src="@{/js/function-manage.js}"></script>
 </head>
 <body>
 <div id="header" class="wrap">
@@ -12,8 +12,8 @@
     <div class="help"><a href="../indexSelect" th:href="@{/}">返回前台页面</a></div>
     <div class="navbar">
         <ul class="clearfix">
-            <li class="current"><a href="index.html" th:href="@{/cms}">首页</a></li>
-            <li><a href="/cms/user" th:href="@{/cms/user}">用户</a></li>
+            <li><a href="index.html" th:href="@{/cms}">首页</a></li>
+            <li class="current"><a href="/cms/user" th:href="@{/cms/user}">用户</a></li>
             <li><a href="productSelect" th:href="@{/cms/product}">商品</a></li>
             <li><a href="ordersel" th:href="@{/cms/order}">订单</a></li>
             <li><a href="SelManage" th:href="@{/cms/guestbook}">留言</a></li>
@@ -72,17 +72,28 @@
                     </td>
                 </tr>
             </table>
-            当前:${cpage }/${tpage }页
-            <a href="user?cp=1">首页</a>
-            <a href="user?cp=${cpage-1<=0 ?1:cpage-1}">上一页</a>
-            <a href="user?cp=${cpage+1>=tpage ? tpage : cpage+1 }">下一页</a>
-            <a href="user?cp=${tpage }">尾页</a>
-            <select onchange="jump(this.value)">
-                <c:forEach var="i" begin="1" end="${tpage}">
-                    <option ${i==cpage ?
-                    "selected" : "" } value="${i}">${i }页</option>
-                </c:forEach>
-            </select>
+            <!--当前:${cpage }/${tpage }页-->
+            <!--<a href="user?cp=1">首页</a>-->
+            <!--<a href="user?cp=${cpage-1<=0 ?1:cpage-1}">上一页</a>-->
+            <!--<a href="user?cp=${cpage+1>=tpage ? tpage : cpage+1 }">下一页</a>-->
+            <!--<a href="user?cp=${tpage }">尾页</a>-->
+            <!--<select onchange="jump(this.value)">-->
+            <!--<c:forEach var="i" begin="1" end="${tpage}">-->
+            <!--<option ${i==cpage ?-->
+            <!--"selected" : "" } value="${i}">${i }页</option>-->
+            <!--</c:forEach>-->
+            <!--</select>-->
+            <ul class="pagination">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&raquo;</a></li>
+            </ul>
+
+
         </div>
     </div>
     <div class="clear"></div>
@@ -91,4 +102,7 @@
     Copyright &copy; 2010 ethen All Rights Reserved. 京ICP证1000001号
 </div>
 </body>
+<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+<script type="text/javascript" th:src="@{/js/jquery.min.js}"/>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"/>
 </html>

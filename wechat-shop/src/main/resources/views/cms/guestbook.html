@@ -22,11 +22,11 @@
     <!--</div>-->
     <div class="navbar">
         <ul class="clearfix">
-            <li class="current"><a href="index.html" th:href="@{/cms}">首页</a></li>
+            <li><a href="index.html" th:href="@{/cms}">首页</a></li>
             <li><a href="/cms/user" th:href="@{/cms/user}">用户</a></li>
             <li><a href="productSelect" th:href="@{/cms/product}">商品</a></li>
             <li><a href="ordersel" th:href="@{/cms/order}">订单</a></li>
-            <li><a href="SelManage" th:href="@{/cms/guestbook}">留言</a></li>
+            <li class="current"><a href="SelManage" th:href="@{/cms/guestbook}">留言</a></li>
             <li><a href="newsselect" th:href="@{/cms/news}">新闻</a></li>
         </ul>
     </div>
@@ -99,21 +99,29 @@
                         }
                         %>
             </table>
-            <div class="pager">
-                <ul class="clearfix">
-                    <% if(cpage!=1){ %>
-                    <li><a href="SelManage?page=<%=cpage-1%>">上一页</a></li>
-                    <% }%>
-                    <%for(int i=1;i<=max_page;i++){ %>
-                    <li><a href="SelManage?page=<%=i%>"><%=i %></a></li>
-                    <%} %>
-                    <%if(cpage!=max_page){ %>
-                    <li><a href="SelManage?page=<%=cpage+1%>">下一页</a></li>
-
-                    <%
-                    } %>
-                </ul>
-            </div>
+            <!--<div class="pager">-->
+            <!--<ul class="clearfix">-->
+            <!--<% if(cpage!=1){ %>-->
+            <!--<li><a href="SelManage?page=<%=cpage-1%>">上一页</a></li>-->
+            <!--<% }%>-->
+            <!--<%for(int i=1;i<=max_page;i++){ %>-->
+            <!--<li><a href="SelManage?page=<%=i%>"><%=i %></a></li>-->
+            <!--<%} %>-->
+            <!--<%if(cpage!=max_page){ %>-->
+            <!--<li><a href="SelManage?page=<%=cpage+1%>">下一页</a></li>-->
+            <!--<%-->
+            <!--} %>-->
+            <!--</ul>-->
+            <!--</div>-->
+            <ul class="pagination">
+                <li><a href="#">&laquo;</a></li>
+                <li><a href="#">1</a></li>
+                <li><a href="#">2</a></li>
+                <li><a href="#">3</a></li>
+                <li><a href="#">4</a></li>
+                <li><a href="#">5</a></li>
+                <li><a href="#">&raquo;</a></li>
+            </ul>
         </div>
     </div>
     <div class="clear"></div>
@@ -122,4 +130,7 @@
     Copyright &copy; 2010 ethen All Rights Reserved. 京ICP证1000001号
 </div>
 </body>
+<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+<script type="text/javascript" th:src="@{/js/jquery.min.js}"/>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"/>
 </html>

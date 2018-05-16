@@ -8,12 +8,12 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.net.InetAddress;
-import java.util.List;
-import java.util.Map;
 
-@EnableScheduling
+@EnableTransactionManagement	//启用事物
+@EnableScheduling				//启用定时任务
 @SpringBootApplication
 public class WechatShopApplication implements CommandLineRunner {
 

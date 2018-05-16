@@ -174,8 +174,8 @@ ul.product li dl dd.price { color:#c30; font-weight:bold; }
 #news .content { font-size:14px; line-height:30px; padding:15px; }
 
 .manage { padding:20px; overflow:hidden; }
-.manage .list { width:100%; border-top:2px solid #dfc9b2; border-bottom:2px solid #dfc9b2; }
-.manage .list th { background:#f7f4eb; color:#8a7152; }
+.manage .list { width:100%; border-top:2px solid #dfc9b2; border-bottom:2px solid #dfc9b2;}
+.manage .list th { background:#f7f4eb; color:#8a7152;text-align: center;}
 .manage .list td { padding:5px; border-top:1px solid #dfc9b2; }
 .manage .list td { border-left:1px solid #e1e1e1; }
 .manage .list td.c { text-align:center; }

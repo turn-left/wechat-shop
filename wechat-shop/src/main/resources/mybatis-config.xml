@@ -21,8 +21,5 @@
         <typeAlias alias="User" type="com.ethen.wechatshop.portal.vo.User"/>
     </typeAliases>
     <mappers>
-        <!-- 映射文件的位置 -->
-        <!--<mapper resource="com/soft/domain/User.xml"/>-->
-
     </mappers>
 </configuration>
