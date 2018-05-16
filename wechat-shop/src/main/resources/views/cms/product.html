@@ -64,54 +64,40 @@
     </div>
     <div class="main">
         <h2>商品管理</h2>
-        <!--<div class="pager">-->
-        <!--<ul class="clearfix">-->
-        <!--<li>当前:${cpage}/${tpage }页</li>-->
-        <!--<li><a href="productSelect?cp=1">首页</a></li>-->
-        <!--<li><a href="productSelect?cp=${cpage-1<=0 ? 1 : cpage-1 }">上一页</a></li>-->
-        <!--<li><a href="productSelect?cp=${cpage+1>=tpage ? tpage : cpage+1 }">下一页</a></li>-->
-        <!--<li><a href="productSelect?cp=${tpage }">尾页</a></li>-->
-        <!--<li><select onchange="jump2(this.value)">-->
-        <!--<c:forEach var="i" begin="1" end="${tpage}">-->
-        <!--<option ${i==cpage ?-->
-        <!--"selected" : "" } value="${i}">${i }页</option>-->
-        <!--</c:forEach>-->
-        <!--</select></li>-->
-        <!--</ul>-->
-        <!--</div>-->
         <br/><br/>
         <div class="manage">
+            <div class="search">
+                <form method="get">
+                    商品编号：<input type="text" class="text" name="productId"/>
+                    商品名称：<input type="text" class="text" name="productName"/>
+                    <label class="ui-blue"><input type="submit" name="submit" value="查询"/></label>
+                </form>
+            </div>
             <table class="list">
                 <tr>
                     <th>ID</th>
                     <th>商品名称</th>
+                    <th>价格</th>
+                    <th>库存</th>
+                    <th>商品描述</th>
+                    <th>图片位置</th>
                     <th>操作</th>
                 </tr>
-                <c:forEach var="p" items="${eplist}">
-                    <tr>
-                        <td class="first w4 c">${p.EP_ID }</td>
-                        <td class="thumb"><img src="../images/product/${p.EP_FILE_NAME }" width="80" height="80"/><a
-                                href="../selectProductView?id=${p.EP_ID }" target="_blank">${p.EP_NAME }</a></td>
-                        <td class="w1 c"><a href="toProductUpdate?id=${p.EP_ID }">修改</a> <a
-                                href="javascript:productDel(${p.EP_ID })">删除</a></td>
-                    </tr>
-                </c:forEach>
+                <tr th:each="prod:${productList}">
+                    <td class="first w4 c" th:text="${prod.productId}"/>
+                    <td class="w1 c" th:text="${prod.productName}"/>
+                    <td class="w2 c" th:text="${prod.price}"/>
+                    <td class="w2 c" th:text="${prod.stock}"/>
+                    <td class="w2 c" th:text="${prod.description}"/>
+                    <td class="w2 c" th:text="${prod.fileName}"/>
+                    <td class="w1 c"><a href="userupdate?id=${u.EU_USER_ID }">修改</a>
+                        <c:if test="${u.EU_STATUS==1}">
+                            <a href="javascript:Delete('${u.EU_USER_ID }');">删除</a></c:if>
+                    </td>
+                </tr>
             </table>
         </div>
-        <!--<div class="pager">-->
-        <!--<ul class="clearfix">-->
-        <!--<li>当前:${cpage}/${tpage }页</li>-->
-        <!--<li><a href="productSelect?cp=1">首页</a></li>-->
-        <!--<li><a href="productSelect?cp=${cpage-1<=0 ? 1 : cpage-1 }">上一页</a></li>-->
-        <!--<li><a href="productSelect?cp=${cpage+1>=tpage ? tpage : cpage+1 }">下一页</a></li>-->
-        <!--<li><a href="productSelect?cp=${tpage }">尾页</a></li>-->
-        <!--<li><select onchange="jump2(this.value)">-->
-        <!--<c:forEach var="i" begin="1" end="${tpage}">-->
-        <!--<option ${i==cpage ? "selected" : "" } value="${i}">${i }页</option>-->
-        <!--</c:forEach>-->
-        <!--</select></li>-->
-        <!--</ul>-->
-        <!--</div>-->
+
         <ul class="pagination">
             <li><a href="#">&laquo;</a></li>
             <li><a href="#">1</a></li>

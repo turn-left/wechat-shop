@@ -4,15 +4,6 @@ package com.ethen.wechatshop.cms.vo;
  * 商品信息
  */
 public class Product {
-//    EP_ID          NUMBER(10) not null,
-//    EP_NAME        VARCHAR2(20) not null,
-//    EP_DESCRIPTION VARCHAR2(100),
-//    EP_PRICE       NUMBER(10,2) not null,
-//    EP_STOCK       NUMBER(10) not null,
-//    EPC_ID         NUMBER(10),
-//    EPC_CHILD_ID   NUMBER(10),
-//    EP_FILE_NAME   VARCHAR2(200)
-
 
     private Integer productId;
     private String productName;

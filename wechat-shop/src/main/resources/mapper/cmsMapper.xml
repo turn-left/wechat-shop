@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="cms">
-    <select id="findAll" resultType="User" parameterType="java.util.Map">
+    <select id="findUserList" resultType="User" parameterType="java.util.Map">
         SELECT u.eu_user_id       "usesrId",
                u.eu_user_name     "userName",
                u.eu_sex           "sex",
@@ -32,4 +32,46 @@
           eo_type         "orderType"
         FROM easybuy_order
     </select>
+
+    <select id="findCommentList" resultType="Comment">
+        SELECT
+          ec_id           "commentId",
+          ec_content      "content",
+          ec_create_time  "createTime",
+          ec_reply        "reply",
+          ec_reply_time   "replyTime",
+          ec_nick_name    "nickName"
+        FROM easybuy_comment
+    </select>
+
+
+    <select id="findProductList" resultType="Product">
+        SELECT
+          p.EP_ID           "productId",
+          p.EP_DESCRIPTION  "description",
+          p.EP_FILE_NAME    "fileName",
+          p.EP_NAME         "productName",
+          p.EP_PRICE        "price",
+          p.EP_STOCK        "stock"
+        FROM EASYBUY_PRODUCT p
+    </select>
+
+    <select id="findProductClassList" resultType="ProductClass">
+        SELECT
+          c.EPC_ID           "categoryId",
+          c.EPC_NAME         "categoryName",
+          c.EPC_PARENT_ID    "parentId"
+        FROM EASYBUY_PRODUCT_CATEGORY c
+    </select>
+
+    <select id="findNewsList" resultType="News">
+        SELECT
+          n.EN_CONTENT          "content",
+          n.EN_CREATE_TIME      "createTime",
+          n.EN_ID               "newsId",
+          n.EN_TITLE            "title"
+        FROM EASYBUY_NEWS n
+    </select>
+
+
 </mapper>

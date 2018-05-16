@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
     SqlSessionTemplate sqlSession;
 
     public List<User> findAll(Object... params) {
-       return sqlSession.selectList("cms.findAll",params);
+       return sqlSession.selectList("cms.findUserList",params);
     }
 
     @Override

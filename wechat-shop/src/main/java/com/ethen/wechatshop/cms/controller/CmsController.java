@@ -1,8 +1,10 @@
 package com.ethen.wechatshop.cms.controller;
 
+import com.ethen.wechatshop.cms.service.CmsService;
 import com.ethen.wechatshop.cms.service.UserService;
 import com.ethen.wechatshop.order.service.OrderService;
 import com.ethen.wechatshop.portal.vo.User;
+import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class CmsController {
     @Autowired
     OrderService orderService;
 
+    @Autowired
+    CmsService cmsService;
+
     private static Logger log = LoggerFactory.getLogger(UserController.class);
 
     @RequestMapping(method = RequestMethod.GET)
@@ -49,7 +54,9 @@ public class CmsController {
     }
 
     @RequestMapping(value = "/product", method = RequestMethod.GET)
-    public Object product() {
+    public Object product(Model model) {
+        Map<String,Object> retMap = cmsService.findProductList();
+        model.addAttribute("productList",retMap.get("productList"));
         return CMS_PRODUCT;
     }
 
@@ -62,18 +69,24 @@ public class CmsController {
 
 
     @RequestMapping(value = "/guestbook", method = RequestMethod.GET)
-    public Object guestbook() {
+    public Object guestbook(Model model) {
+        Map<String,Object> retMap = cmsService.findCommentList();
+        model.addAttribute("commentList",retMap.get("commentList"));
         return CMS_BOOK;
     }
 
 
     @RequestMapping(value = "/news", method = RequestMethod.GET)
-    public Object news() {
+    public Object news(Model model) {
+        Map<String,Object> retMap = cmsService.findNewsList();
+        model.addAttribute("newsList",retMap.get("newsList"));
         return CMS_NEWS;
     }
 
     @RequestMapping(value = "/productClass", method = RequestMethod.GET)
-    public Object productClass() {
+    public Object productClass(Model model) {
+        Map<String,Object> retMap = cmsService.findProductClassList();
+        model.addAttribute("productClassList",retMap.get("productClassList"));
         return CMS_PRODUCT_CLASS;
     }
 

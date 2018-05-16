@@ -54,16 +54,20 @@
                 <tr>
                     <th>ID</th>
                     <th>新闻标题</th>
+                    <th>新闻内容</th>
+                    <th>创建时间</th>
                     <th>操作</th>
                 </tr>
-                <c:forEach var="n" items="${newslist}">
-                    <tr>
-                        <td class="first w4 c">${n.EN_ID }</td>
-                        <td>${n.EN_TITLE }</td>
-                        <td class="w1 c"><a href="upnews?id=${n.EN_ID }">修改</a> <a
-                                href="javascript:Delete2(${n.EN_ID });">删除</a></td>
-                    </tr>
-                </c:forEach>
+                <tr th:each="news:${newsList}">
+                    <td class="first w4 c" th:text="${news.newsId}"/>
+                    <td class="w1 c" th:text="${news.title}"/>
+                    <td class="w2 c" th:text="${news.content}"/>
+                    <td class="w2 c" th:text="${news.createTime}"/>
+                    <td class="w1 c"><a href="userupdate?id=${u.EU_USER_ID }">修改</a>
+                        <c:if test="${u.EU_STATUS==1}">
+                            <a href="javascript:Delete('${u.EU_USER_ID }');">删除</a></c:if>
+                    </td>
+                </tr>
             </table>
             <!--当前:${cpage }/${tpage }页-->
             <!--<a href="newsselect?cp=1">首页</a>-->
