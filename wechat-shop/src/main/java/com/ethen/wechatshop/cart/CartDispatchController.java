@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
  */
 @Controller
 @RequestMapping("/shopping")
-public class CartController {
+public class CartDispatchController {
 
     @RequestMapping(method = RequestMethod.GET)
     public Object shopping() {

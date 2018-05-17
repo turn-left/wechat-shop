@@ -3,30 +3,29 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>易买网 - 首页</title>
-    <link type="text/css" rel="stylesheet" href="css/style.css"/>
-    <script type="text/javascript" src="scripts/function.js"></script>
-    <script type="text/javascript" src="/160jsp8XM/scripts/calendar.js"></script>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+    <link type="text/css" rel="stylesheet" href="css/style.css" th:href="@{/css/style.css}"/>
+    <script type="text/javascript" src="scripts/function.js" th:src="@{/js/function.js}"></script>
+    <script type="text/javascript" src="/160jsp8XM/scripts/calendar.js" th:src="@{/js/calendar.js}"></script>
     <script type="text/javascript">
         function selectname() {
             var name = document.getElementById("selectname").value;
             location.href = 'selectProductList?name=' + name;
         }
-
-
     </script>
-
 </head>
 <body>
 <div id="header" class="wrap">
-    <div id="logo"><img src="images/logo.gif"/></div>
+    <div id="logo"><img src="images/logo.gif" th:src="@{/img/logo.gif}"/></div>
     <div class="help">
-        <c:if test="${name!=null}"><a href="selectdd?dd=${name.EU_USER_ID }">个人订单</a></c:if>
-        <c:if test="${name!=null}">当前用户${name.EU_USER_ID }</c:if>
+        <span th:if="${userInfo} != null"><a href="selectdd?dd=${name.EU_USER_ID }">个人订单</a></span>
+        <span th:if="${userInfo} != null">当前用户:<span th:text="${userInfo.userName}"></span></span>
         <a href="ShopSelect" class="shopping" th:href="@{/shopping}">购物车</a>
-        <c:if test="${name==null}"><a href="login.html" th:href="@{/login}">登录</a></c:if>
-        <c:if test="${name!=null}"><a href="zx">退出</a></c:if>
-        <a href="register.html">注册</a>        <a href="SelallServlet" th:href="@{/guestbook}">留言</a>
-        <c:if test="${name.EU_STATUS==2}"><a href="cms/index.html" th:href="@{/cms}">去后台</a></c:if>
+        <span th:if="${userInfo}==null"><a href="login.html" th:href="@{/login}">登录</a></span>
+        <span th:if="${userInfo}!=null"><a href="zx">退出</a></span>
+        <span th:if="${userInfo}==null"><a href="register.html">注册</a></span>
+        <span th:if="${userInfo}!=null"><a href="SelallServlet" th:href="@{/guestbook}">留言</a></span>
+        <span th:if="${userInfo} =='2'"><a href="/manage/index.html">去后台</a></span>
     </div>
     <div class="navbar">
         <ul class="clearfix">
@@ -54,7 +53,7 @@
             <li><a href="#">运动鞋</a></li>
             <li><a href="#">美容护肤</a></li>
             <li><a href="#">饰品</a></li>
-            <li class="last"><input type="text" id="selectname"/><a href="javascript:selectname()">搜索</a></li>
+            <li class="last2"><input type="text" id="selectname"/><a href="javascript:selectname()">搜索</a></li>
         </ul>
     </div>
 </div>
@@ -91,8 +90,8 @@
                     </tr>
                     <tr>
                         <td class="field">性别：</td>
-                        <td><input type="radio" name="sex" value="T" checked="checked"/>男 <input type="radio" name="sex"
-                                                                                                 value="F"/>女
+                        <td><input type="radio" name="sex" value="T" checked="checked"/>男
+                            <input type="radio" name="sex" value="F"/>女
                         </td>
                     </tr>
                     <tr>
@@ -107,23 +106,24 @@
                     </tr>
                     <tr>
                         <td class="field">手机号码：</td>
-                        <td><input type="text" class="text" name="mobile" value=""/></td>
+                        <td><input type="text" class="text" name="mobile" value="" onblur="CheckItem(this)"/><span></span>
+                        </td>
                     </tr>
                     <tr>
-                        <td class="field">送货地址：</td>
+                        <td class="field">收件地址：</td>
                         <td><input type="text" class="text" name="address" value=""/></td>
                     </tr>
                     <tr>
                         <td class="field">验证码：</td>
                         <td><input class="text verycode" type="text" name="veryCode" onfocus="FocusItem(this)"
-                                   onblur="Checknum(this);"/><img id="veryCode" alt="看不清,换一张" style="cursor:hand;"
-                                                                  src="usernum?<%=new Date().getTime() %>"
-                                                                  onclick="change(this)"/><span id="msg"></span></td>
+                                   onblur="Checknum(this);"/>
+                            <img id="veryCode" alt="看不清,换一张" style="cursor:hand;" src="usernum?<%=new Date().getTime() %>" onclick="change(this)"/>
+                            <span id="msg"></span>
+                        </td>
                     </tr>
                     <tr>
                         <td></td>
-                        <td><label class="ui-green"><input type="submit" name="submit" disabled=true id="sub"
-                                                           value="提交注册"/></label></td>
+                        <td><label class="ui-green"><input type="submit" name="submit" disabled=true id="sub" value="注册"/></label></td>
                     </tr>
                 </table>
             </form>
@@ -135,7 +135,6 @@
     Copyright &copy; 2010 ethen All Rights Reserved. 京ICP证1000001号
 </div>
 </body>
-<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
 <script type="text/javascript" th:src="@{/js/jquery.min.js}"/>
 <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"/>
 </html>

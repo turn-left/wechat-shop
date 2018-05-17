@@ -69,16 +69,15 @@
                     <th>留言时间</th>
                     <th>回复</th>
                     <th>回复时间</th>
-                    <!--<th>状态</th>-->
                     <th>操作</th>
                 </tr>
                 <tr th:each="com:${commentList}">
-                    <td class="first w4 c" th:text="${com.commentId}"/>
+                    <td class="first w1 c" th:text="${com.commentId}"/>
                     <td class="w1 c" th:text="${com.nickName}"/>
-                    <td class="w2 c" th:text="${com.content}"/>
-                    <td class="w2 c" th:text="${com.createTime}"/>
-                    <td class="w2 c" th:text="${com.reply}"/>
-                    <td class="w2 c" th:text="${com.replyTime}"/>
+                    <td class="w3 c" th:text="${com.content}"/>
+                    <td class="w1 c" th:text="${com.createTime}"/>
+                    <td class="w3 c" th:text="${com.reply}"/>
+                    <td class="w1 c" th:text="${com.replyTime}"/>
                     <td class="w1 c"><a href="userupdate?id=${u.EU_USER_ID }">修改</a>
                         <c:if test="${u.EU_STATUS==1}">
                             <a href="javascript:Delete('${u.EU_USER_ID }');">删除</a></c:if>

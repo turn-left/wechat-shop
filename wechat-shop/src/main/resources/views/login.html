@@ -3,10 +3,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>易买网 - 首页</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
     <script type="text/javascript" th:href="@{/js/function.js}"></script>
-
-
     <script type="text/javascript">
         function selectname() {
             var name = document.getElementById("selectname").value;
@@ -18,14 +17,14 @@
 <div id="header" class="wrap">
     <div id="logo"><img th:src="@{/img/logo.gif}"/></div>
     <div class="help">
-        <span th:if="${name} != null"><a href="selectdd?dd=${name.EU_USER_ID }">个人订单</a></span>
-        <span th:if="${name} != null">当前用户:<span th:text="${name}" }</span>
-        <a href="ShopSelect" class="shopping" th:href="@{/shopping}">购物车</a>
-        <span th:if="${name}==null"><a href="login.html" th:href="@{/login}">登录</a></span>
-        <span th:if="${name}!=null"><a href="zx">退出</a></span>
-        <span th:if="${name}==null" ><a href="register.html">注册</a></span>
-        <span th:if="${name}!=null">        <a href="SelallServlet" th:href="@{/guestbook}">留言</a></span>
-        <span th:if="${status}=='2'"> <a href="/manage/index.html">去后台</a></span>
+        <span th:if="${userInfo} != null"><a th:href="@{/order/selfOrder}">个人订单</a></span>
+        <span th:if="${userInfo} != null">当前用户:<span th:text="${userInfo.userName}"></span></span>
+        <a class="shopping" th:href="@{/shopping}">购物车</a>
+        <span th:if="${userInfo}==null"><a th:href="@{/portal/toLogin}">登录</a></span>
+        <span th:if="${userInfo}!=null"><a href="zx">退出</a></span>
+        <span th:if="${userInfo}==null"><a th:href="@{/portal/toRegister}">注册</a></span>
+        <span th:if="${userInfo}!=null"><a th:href="@{/portal/guestbook}">留言</a></span>
+        <span th:if="${userInfo} =='2'"> <a th:href="@{/cms}">去后台</a></span>
     </div>
     <div class="navbar">
         <ul class="clearfix">
@@ -100,7 +99,6 @@
     Copyright &copy; 2018 ethenyang All Rights Reserved. 京ICP证1000001号
 </div>
 </body>
-<link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
 <script type="text/javascript" th:src="@{/js/jquery.min.js}"/>
 <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"/>
 </html>

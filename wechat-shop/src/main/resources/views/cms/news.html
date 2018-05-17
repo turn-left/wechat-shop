@@ -59,9 +59,9 @@
                     <th>操作</th>
                 </tr>
                 <tr th:each="news:${newsList}">
-                    <td class="first w4 c" th:text="${news.newsId}"/>
+                    <td class="first w1 c" th:text="${news.newsId}"/>
                     <td class="w1 c" th:text="${news.title}"/>
-                    <td class="w2 c" th:text="${news.content}"/>
+                    <td class="w3 c" th:text="${news.content}"/>
                     <td class="w2 c" th:text="${news.createTime}"/>
                     <td class="w1 c"><a href="userupdate?id=${u.EU_USER_ID }">修改</a>
                         <c:if test="${u.EU_STATUS==1}">
