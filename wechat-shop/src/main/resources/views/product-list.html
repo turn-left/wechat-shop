@@ -20,7 +20,7 @@
 </head>
 <body>
 <div id="header" class="wrap">
-    <div id="logo"><img src="images/logo.gif"/></div>
+    <div id="logo"><img src="logo.gif" th:src="@{/img/logo.gif}"/></div>
     <div class="help">
         <span th:if="${userInfo} != null"><a th:href="@{/order/selfOrder}">个人订单</a></span>
         <span th:if="${userInfo} != null">当前用户:<span th:text="${userInfo.userName}"></span></span>
