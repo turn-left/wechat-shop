@@ -17,4 +17,17 @@
          WHERE u.eu_user_name = #{userName}
            AND u.eu_password = #{password}
     </select>
+
+    <select id="selectUserInfoLIst" resultType="User">
+        SELECT u.eu_user_id       "usesrId",
+        u.eu_user_name     "userName",
+        u.eu_sex           "sex",
+        u.eu_birthday      "birthday",
+        u.eu_mobile        "phoneNo",
+        u.eu_identity_code "idNo",
+        u.eu_email         "email",
+        u.eu_address       "address",
+        u.eu_status        "status"
+        FROM easybuy_user u
+    </select>
 </mapper>

@@ -5,21 +5,27 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 
 import javax.sql.DataSource;
 
 
 /**
- * 数据访问的配置 (多数据源)
- *
- *
- *
- * todo 待优化 DAO的逻辑
+ * Description: 数据访问的配置 (多数据源)
+ * <p>
+ * Note: <p>配置多数据源的第一步工作是禁用SpringBoot自动配置
+ * {@link SpringBootApplication#exclude()}
+ * {@link DataSourceAutoConfiguration}
+ * </p><p>
+ * <code>@Primary</code>注解的作用,当同一个类型存在多个Bean的时候,
+ * spring会默认注入以@Primary注解的bean
+ * </p>
+ * todo 待优化 DAO具体细节
  */
 @Configuration
 public class DataAccessConfig {
@@ -28,9 +34,12 @@ public class DataAccessConfig {
     DatasourceProps props;
 
 
-    //mysql数据源
-    @Primary
-    @Bean(name = "mysqlDataSource",initMethod = "init", destroyMethod = "close")
+    /***************************************************** mysql ******************************************************/
+    /**
+     * mysql数据源
+     */
+//    @Primary
+    @Bean(name = "mysqlDataSource", initMethod = "init", destroyMethod = "close")
     public DataSource mysqlDataSource() {
         //配置数据库的参数
         DruidDataSource druidDataSource = new DruidDataSource();
@@ -45,23 +54,6 @@ public class DataAccessConfig {
         druidDataSource.setMinEvictableIdleTimeMillis(Integer.parseInt(props.getMinEvictableIdleTimeMillis()));
         return druidDataSource;
     }
-
-    @Bean(name = "orclDataSource",initMethod = "init",destroyMethod = "close")
-    public DataSource oracleDataSource() {
-        //配置数据库的参数
-        DruidDataSource druidDataSource = new DruidDataSource();
-        druidDataSource.setDriverClassName(props.getOracleDriver());
-        druidDataSource.setUrl(props.getOracleUrl());
-        druidDataSource.setUsername(props.getOracleUser());
-        druidDataSource.setPassword(props.getOraclePwd());
-        druidDataSource.setMinIdle(Integer.parseInt(props.getMinIdle()));
-        druidDataSource.setMaxActive(Integer.parseInt(props.getMaxActive()));
-        druidDataSource.setMaxWait(Integer.parseInt(props.getMaxWait()));
-        druidDataSource.setTimeBetweenEvictionRunsMillis(Integer.parseInt(props.getTimeBetweenEvictionRunsMillis()));
-        druidDataSource.setMinEvictableIdleTimeMillis(Integer.parseInt(props.getMinEvictableIdleTimeMillis()));
-        return druidDataSource;
-    }
-
 
     @Bean(name = "sqlSessionFactoryMysql")
     public SqlSessionFactory sqlSessionFactoryMysql(DataSource mysqlDataSource) throws Exception {
@@ -79,6 +71,25 @@ public class DataAccessConfig {
         return sqlSession;
     }
 
+    /**************************************************** oracle ******************************************************/
+    /**
+     * oracle数据源
+     */
+    @Bean(name = "orclDataSource", initMethod = "init", destroyMethod = "close")
+    public DataSource oracleDataSource() {
+        //配置数据库的参数
+        DruidDataSource druidDataSource = new DruidDataSource();
+        druidDataSource.setDriverClassName(props.getOracleDriver());
+        druidDataSource.setUrl(props.getOracleUrl());
+        druidDataSource.setUsername(props.getOracleUser());
+        druidDataSource.setPassword(props.getOraclePwd());
+        druidDataSource.setMinIdle(Integer.parseInt(props.getMinIdle()));
+        druidDataSource.setMaxActive(Integer.parseInt(props.getMaxActive()));
+        druidDataSource.setMaxWait(Integer.parseInt(props.getMaxWait()));
+        druidDataSource.setTimeBetweenEvictionRunsMillis(Integer.parseInt(props.getTimeBetweenEvictionRunsMillis()));
+        druidDataSource.setMinEvictableIdleTimeMillis(Integer.parseInt(props.getMinEvictableIdleTimeMillis()));
+        return druidDataSource;
+    }
 
 
     @Bean(name = "sqlSessionFactoryOrcl")
@@ -98,10 +109,11 @@ public class DataAccessConfig {
         return sqlSession;
     }
 
+
+    //*默认值
     @Bean(name = "sqlSession")
     public SqlSessionTemplate sqlSessionTemplateDefault(SqlSessionFactory sqlSessionFactoryOrcl) {
         return new SqlSessionTemplate(sqlSessionFactoryOrcl);
     }
-
 
 }

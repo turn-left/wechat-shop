@@ -5,8 +5,8 @@ table { border-collapse:collapse; }
 input { font-size:12px; }
 label { display:inline-block; padding-top:1px; }
 label input { border:0; line-height:20px; padding:0px 10px; overflow:visible; color:#fff; }
-label.ui-green { background:#98c286; border:1px solid #3b6e22; }
-label.ui-green input { background:#68a54c; }
+label.ui-green { background:#98c286; border:1px solid #3b6e22;width: 200px;}
+label.ui-green input { background:#68a54c; width: 100%}
 label.ui-blue { background:#8a9cc2; border:1px solid #29447e; }
 label.ui-blue input { background:#5e77aa; }
 ul { list-style:none; }

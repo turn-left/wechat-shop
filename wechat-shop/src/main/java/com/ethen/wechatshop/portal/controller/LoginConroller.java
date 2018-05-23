@@ -1,5 +1,6 @@
 package com.ethen.wechatshop.portal.controller;
 
+import com.ethen.wechatshop.portal.auth.ResponseVo;
 import com.ethen.wechatshop.portal.service.LoginService;
 import com.ethen.wechatshop.portal.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,6 +34,10 @@ public class LoginConroller {
             model.addAttribute("userInfo", userInfo);
             return "index";
         } else {
+            ResponseVo response = new ResponseVo();
+            response.setCode(101);
+            response.setMsg("用户名或密码错误！");
+            model.addAttribute("response",response);
             return "login";
         }
     }

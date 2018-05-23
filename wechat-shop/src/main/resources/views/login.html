@@ -1,17 +1,18 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>易买网 - 首页</title>
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
     <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
-    <script type="text/javascript" th:href="@{/js/function.js}"></script>
+    <script type="text/javascript" th:src="@{/js/function.js}"></script>
     <script type="text/javascript">
         function selectname() {
             var name = document.getElementById("selectname").value;
             location.href = 'selectProductList?name=' + name;
         }
     </script>
+
 </head>
 <body>
 <div id="header" class="wrap">
@@ -62,30 +63,31 @@
         <em class="corner rt"></em>
         <div class="box">
             <h1>欢迎回到易买网</h1>
-            <form id="loginForm" method="post" th:action="@{/login}" onsubmit="return checkForm(this)">
+            <form id="loginForm" method="post" th:action="@{/login}" onsubmit="return checkSubmit()">  <!--onsubmit="return checkForm(this)"-->
                 <table>
                     <tr>
                         <td class="field">用户名：</td>
-                        <td><input class="text" type="text" name="userName" onfocus="FocusItem(this)"
+                        <td><input id="uNameLogin" class="text" type="text" name="userName" onfocus="FocusItem(this)"
                                    onblur="CheckItem(this);"/><span></span></td>
                     </tr>
                     <tr>
-                        <td class="field">登录密码：</td>
+                        <td class="field" id="uPwdLogin">登录密码：</td>
                         <td><input class="text" type="password" id="passWord" name="passWord" onfocus="FocusItem(this)"
                                    onblur="CheckItem(this);"/><span></span></td>
                     </tr>
                     <tr>
-                        <td class="field">验证码：</td>
-                        <td><input class="text verycode" type="text" name="veriCode" onfocus="FocusItem(this)"
-                                   onblur="Checknum(this);"/>
+                        <!--<td class="field">验证码：</td>-->
+                        <!--<td><input class="text verycode" type="text" name="veriCode" onfocus="FocusItem(this)"-->
+                                   <!--onblur="Checknum(this);"/>-->
                             <!--<img id="veryCode" alt="看不清,换一张" style="cursor:hand;" src="usernum?<%=new Date().getTime() %>" onclick="change(this)" />-->
-                            <span id="msg"></span></td>
+                            <td class="field"></td>
+                            <td><span id="msg" class="text"></span></td>
                     </tr>
                     <tr>
                         <td></td>
                         <td>
                             <label class="ui-green">
-                                <input type="submit" name="submit" id="sub" value="立即登录"/>
+                                <input type="submit" name="submit" id="subLog" value="立即登录"/>
                             </label>
                         </td>
                     </tr>
@@ -99,6 +101,42 @@
     Copyright &copy; 2018 ethenyang All Rights Reserved. 京ICP证1000001号
 </div>
 </body>
+
+<!--通过model取值-->
+<script th:inline="javascript">
+    var response = [[${response}]];
+    alert(response);
+    console.log(response);
+//    if(response != null) {
+//        var code = response.code;
+//        var msg = response.msg;
+//        if(code==101) {
+//            $("#msg").html(msg).css({color:"red"});
+//        }
+//    }
+    if (response != null) {
+        var code = response.code;
+        var msg = response.msg;
+        if(code == 101) {
+            var msgBox = document.getElementById("msg");
+            msgBox.innerHTML = msg;
+            msgBox.className = "error";
+        }
+    }
+
+    function checkSubmit() {
+        var userName = document.getElementById("uNameLogin");
+        var password = document.getElementById("uPwdLogin");
+        alert(00000000000000);
+        if (CheckItem(userName) && CheckItem(password)) {
+            return true;
+        } else {
+            return false;
+        }
+
+    }
+
+</script>
 <script type="text/javascript" th:src="@{/js/jquery.min.js}"/>
 <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"/>
 </html>
