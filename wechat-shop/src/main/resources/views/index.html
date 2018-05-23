@@ -86,15 +86,6 @@
 <body>
 <div id="header" class="wrap">
     <div id="logo"><img th:src="@{/img/logo.gif}"/></div>
-    <!--<div class="help">-->
-        <!--&lt;!&ndash;<c:if test="${name!=null}"><a href="selectdd?dd=${name.EU_USER_ID }">个人订单</a></c:if>&ndash;&gt;-->
-        <!--&lt;!&ndash;<c:if test="${name!=null}">当前用户${name.EU_USER_ID }</c:if>&ndash;&gt;-->
-        <!--&lt;!&ndash;<a href="ShopSelect" class="shopping">购物车</a>&ndash;&gt;-->
-        <!--&lt;!&ndash;<c:if test="${name==null}"><a href="login.html">登录</a></c:if>&ndash;&gt;-->
-        <!--&lt;!&ndash;<c:if test="${name!=null}"><a href="zx">退出</a>&ndash;&gt;-->
-        <!--&lt;!&ndash;</c:if><a href="register.webapp">注册</a>        <a href="SelallServlet" th:href="@{/guestbook}">留言</a>&ndash;&gt;-->
-        <!--&lt;!&ndash;<c:if test="${name.EU_STATUS==2}"><a href="views.cmsdex.html" >去后台</a></c:if>&ndash;&gt;-->
-    <!--</div>-->
     <div class="help">
         <span th:if="${userInfo} != null"><a th:href="@{/order/selfOrder}">个人订单</a></span>
         <span th:if="${userInfo} != null">当前用户:<span th:text="${userInfo.userName}"></span></span>

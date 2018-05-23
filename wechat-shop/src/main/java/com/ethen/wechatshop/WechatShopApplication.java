@@ -1,36 +1,25 @@
 package com.ethen.wechatshop;
 
-import com.ethen.wechatshop.common.service.RedisService;
-import com.ethen.wechatshop.util.RedisClient;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.net.InetAddress;
+import java.util.List;
+import java.util.Map;
 
-@EnableTransactionManagement	//启用事物
-@EnableScheduling				//启用定时任务
-@SpringBootApplication
+@EnableTransactionManagement										 //启用事物
+@EnableScheduling													 //启用定时任务
+@SpringBootApplication(exclude = {DataSourceAutoConfiguration.class})//禁用数据源，默认配置
 public class WechatShopApplication implements CommandLineRunner {
 
-
 	@Autowired
-	SqlSessionTemplate sqlSession;
-
-	@Autowired
-	RedisService redisService;
-
-	@Autowired
-	SqlSessionTemplate sqlSessionTemplate;
-
-
-	@Autowired
-	RedisClient redisClient;
-
+	private SqlSessionTemplate mysqlSession;
 
 	public static void main(String[] args) {
 		SpringApplication.run(WechatShopApplication.class, args);
@@ -50,6 +39,7 @@ public class WechatShopApplication implements CommandLineRunner {
 		InetAddress address = InetAddress.getLocalHost();
 		String hostIp = address.getHostAddress();
 		System.err.println("当前服务器ip: " + hostIp);
-
+		List<Map<String,Object>> cmsList = mysqlSession.selectList("cms.selectCmsUserList");
+		System.err.println("查询mysql表morning.cms_user: " + cmsList);
 	}
 }

@@ -73,5 +73,7 @@
         FROM EASYBUY_NEWS n
     </select>
 
-
+    <select id="selectCmsUserList" resultType="HashMap">
+        SELECT * FROM cms_user
+    </select>
 </mapper>

@@ -71,7 +71,6 @@ function CheckItem(obj) {
 function checkForm(frm) {
     alert("hey!001")
     var els = frm.getElementsByTagName("input");
-    alert("hey!")
     for (var i = 0; i < els.length; i++) {
         //if(typeof(els[i].getAttribute("onblur")) == "string") {
         if (typeof(els[i].getAttribute("onblur")) == "function") {
