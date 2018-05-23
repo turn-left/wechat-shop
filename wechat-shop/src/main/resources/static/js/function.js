@@ -12,6 +12,9 @@ function FocusItem(obj) {
     var msgBox = obj.parentNode.getElementsByTagName("span")[0];
     msgBox.innerHTML = "";
     msgBox.className = "";
+    var errMsg = document.getElementById("msg");
+    errMsg.innerHTML = "";
+    errMsg.className = "";
 }
 
 function CheckItem(obj) {

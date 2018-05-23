@@ -119,6 +119,7 @@
             var msgBox = document.getElementById("msg");
             msgBox.innerHTML = msg;
             msgBox.className = "error";
+            $("#msg").shake(2, 10, 400);
         }
     }
 
@@ -130,8 +131,23 @@
         } else {
             return false;
         }
-
     }
+
+    //实现错误提示抖动
+    jQuery.fn.shake = function (intShakes /*Amount of shakes*/, intDistance /*Shake distance*/, intDuration /*Time duration*/) {
+        this.each(function () {
+            var jqNode = $(this);
+            jqNode.css({ position: 'relative' });
+            for (var x = 1; x <= intShakes; x++) {
+                jqNode.animate({ left: (intDistance * -1) }, (((intDuration / intShakes) / 4)))
+                    .animate({ left: intDistance }, ((intDuration / intShakes) / 2))
+                    .animate({ left: 0 }, (((intDuration / intShakes) / 4)));
+            }
+        });
+        return this;
+    }
+
+
 
 </script>
 <script type="text/javascript" th:src="@{/js/jquery.min.js}"/>
