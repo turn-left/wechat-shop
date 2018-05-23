@@ -105,8 +105,6 @@
 <!--通过model取值-->
 <script th:inline="javascript">
     var response = [[${response}]];
-    alert(response);
-    console.log(response);
 //    if(response != null) {
 //        var code = response.code;
 //        var msg = response.msg;
@@ -127,7 +125,6 @@
     function checkSubmit() {
         var userName = document.getElementById("uNameLogin");
         var password = document.getElementById("uPwdLogin");
-        alert(00000000000000);
         if (CheckItem(userName) && CheckItem(password)) {
             return true;
         } else {
