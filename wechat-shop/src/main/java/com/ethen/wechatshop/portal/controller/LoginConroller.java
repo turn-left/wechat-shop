@@ -67,18 +67,19 @@ public class LoginConroller {
      * @param response
      * @return
      */
-    @RequestMapping(value = "/logout",method = RequestMethod.GET)
+    @RequestMapping(value = "/portal/logout",method = RequestMethod.GET)
     public Object logout(HttpServletRequest request, HttpServletResponse response) {
         Cookie[] cookies = request.getCookies();
         for (Cookie cookie : cookies) {
-            if ("token".equals(cookie.getName())) {
+            if (PortalConstant.JWT_KEY.equals(cookie.getName()) || PortalConstant.LOGIN_ID.equals(cookie.getName()) ) {
                 cookie.setValue(null);
                 cookie.setMaxAge(0);    //立即销毁cookie
+                cookie.setPath("/");
                 response.addCookie(cookie);
                 break;
             }
         }
-        return "redirect:login";        //重定向到登录页
+        return "login";
     }
 
 

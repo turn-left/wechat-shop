@@ -91,7 +91,7 @@
         <span th:if="${userInfo} != null">当前用户:<span th:text="${userInfo.userName}"></span></span>
         <a class="shopping" th:href="@{/shopping}">购物车</a>
         <span th:if="${userInfo}==null"><a th:href="@{/portal/toLogin}">登录</a></span>
-        <span th:if="${userInfo}!=null"><a href="zx">退出</a></span>
+        <span th:if="${userInfo}!=null"><a th:href="@{/portal/logout}">退出</a></span>
         <span th:if="${userInfo}==null"><a th:href="@{/portal/toRegister}">注册</a></span>
         <span th:if="${userInfo}!=null"><a th:href="@{/portal/guestbook}">留言</a></span>
         <span th:if="${userInfo.status} =='2'"> <a th:href="@{/cms}">去后台</a></span>

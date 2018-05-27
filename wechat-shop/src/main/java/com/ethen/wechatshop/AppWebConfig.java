@@ -21,8 +21,9 @@ public class AppWebConfig extends WebMvcConfigurerAdapter {
     public void addInterceptors(InterceptorRegistry registry) {
 //        super.addInterceptors(registry);
         registry.addInterceptor(new TokenInterceptor())
-                .addPathPatterns("/","/**")
+                .addPathPatterns("/", "/**")
 //                .excludePathPatterns("/index")
-                .excludePathPatterns("/login", "portal/login", "/portal/toLogin");
+                .excludePathPatterns("/login", "portal/login", "/portal/toLogin")
+                .excludePathPatterns("/portal/logout");
     }
 }
