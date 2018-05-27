@@ -26,26 +26,26 @@ public class LoginServiceImpl implements LoginService {
 
         try {
             //先从redis中取
-            String userJson = redisClient.get("login:" + userName);
-            if (!StringUtils.isEmpty(userJson)) {
-                return new ObjectMapper().readValue(userJson, User.class);
-            } else {
-                Map<String, String> params = new HashMap<>();
-                params.put("userName", userName);
-                params.put("password", password);
-                User userInfo = sqlSession.selectOne("user.selectUserInfo", params);
+//            String userJson = redisClient.get("login:" + userName);
+//            if (!StringUtils.isEmpty(userJson)) {
+//                return new ObjectMapper().readValue(userJson, User.class);
+//            } else {
+            Map<String, String> params = new HashMap<>();
+            params.put("userName", userName);
+            params.put("password", password);
+            User userInfo = sqlSession.selectOne("user.selectUserInfo", params);
 
-                //登录成功,将用户信息保存在redis中
-                if (userInfo != null && !StringUtils.isEmpty(userInfo.getUserName())) {
-                    String userJsonNew = new ObjectMapper().writeValueAsString(userInfo);
-                    //缓存用户信息到redis
-                    redisClient.set("login:" + userInfo.getUserName(), userJsonNew, 60 * 60 * 24);
-                }
+            //登录成功,将用户信息保存在redis中
+//            if (userInfo != null && !StringUtils.isEmpty(userInfo.getUserName())) {
+//                String userJsonNew = new ObjectMapper().writeValueAsString(userInfo);
+//                //缓存用户信息到redis
+//                redisClient.set("login:" + userInfo.getUserName(), userJsonNew, 60 * 60 * 24);
+//            }
 
-                return userInfo;
-            }
+            return userInfo;
+//            }
 
-        } catch (IOException e) {
+        } catch (Exception e) {
             e.printStackTrace();
             return null;
         }

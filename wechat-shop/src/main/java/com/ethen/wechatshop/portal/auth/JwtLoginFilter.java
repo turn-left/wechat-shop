@@ -1,5 +1,6 @@
 package com.ethen.wechatshop.portal.auth;
 
+import com.ethen.wechatshop.common.ResponseVo;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;

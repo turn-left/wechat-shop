@@ -94,7 +94,7 @@
         <span th:if="${userInfo}!=null"><a href="zx">退出</a></span>
         <span th:if="${userInfo}==null"><a th:href="@{/portal/toRegister}">注册</a></span>
         <span th:if="${userInfo}!=null"><a th:href="@{/portal/guestbook}">留言</a></span>
-        <span th:if="${userInfo} =='2'"> <a th:href="@{/cms}">去后台</a></span>
+        <span th:if="${userInfo.status} =='2'"> <a th:href="@{/cms}">去后台</a></span>
     </div>
     <div class="navbar">
         <ul class="clearfix">

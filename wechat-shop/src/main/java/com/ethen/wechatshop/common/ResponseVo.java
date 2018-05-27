@@ -1,4 +1,4 @@
-package com.ethen.wechatshop.portal.auth;
+package com.ethen.wechatshop.common;
 
 public class ResponseVo<T> {
 
@@ -12,6 +12,25 @@ public class ResponseVo<T> {
     public ResponseVo(int code, String msg) {
         this.code = code;
         this.msg = msg;
+    }
+
+
+    public static ResponseVo fail(ResponseEnum resEnum) {
+        return success(resEnum);
+    }
+
+    public static ResponseVo success(ResponseEnum resEnum) {
+        return success(resEnum,null);
+    }
+
+    public static <T>ResponseVo<T> success(ResponseEnum resEnum, T data) {
+        ResponseVo<T> res = new ResponseVo<>();
+        res.setCode(Integer.parseInt(resEnum.getCode()));
+        res.setMsg(resEnum.getMessage());
+        if (data != null) {
+            res.setData(data);
+        }
+        return res;
     }
 
     public ResponseVo(int code, String msg, T data) {

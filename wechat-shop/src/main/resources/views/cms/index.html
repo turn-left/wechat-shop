@@ -22,8 +22,8 @@
     </div>
 </div>
 <div id="childNav">
-    <div class="welcome wrap">
-        管理员admin您好，今天是2012-12-21，欢迎回到管理后台。
+    <div class="welcome wrap" th:if="${userInfo != null}">
+        管理员<span th:text="${userInfo.userName}"></span>您好，今天是<span id="nowDate"></span>，欢迎回到管理后台。
     </div>
 </div>
 <div id="position" class="wrap">
@@ -70,4 +70,17 @@
 <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
 <script type="text/javascript" th:src="@{/js/jquery.min.js}"/>
 <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"/>
+<script type="text/javascript">
+    var now= new Date();
+    //年份
+    var year=now.getFullYear();
+    //月份
+    var month=now.getMonth();
+    //日
+    var date=now.getDate();
+    var nowStr = year+"年"+(month+1)+"月"+date+"日";
+    $(document).ready(
+        $("#nowDate").innerHTML = nowStr
+    );
+</script>
 </html>

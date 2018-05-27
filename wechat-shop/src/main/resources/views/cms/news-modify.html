@@ -31,8 +31,8 @@
     </div>
 </div>
 <div id="childNav">
-    <div class="welcome wrap">
-        管理员pillys您好，今天是2012-12-21，欢迎回到管理后台。
+    <div class="welcome wrap" th:if="${userInfo != null}">
+        管理员<span th:text="${userInfo.userName}"></span>您好，今天是2012-12-21，欢迎回到管理后台。
     </div>
 </div>
 <div id="position" class="wrap">
