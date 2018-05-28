@@ -1,7 +1,7 @@
 package com.ethen.wechatshop.portal.controller;
 
 import com.ethen.wechatshop.common.CacheUtil;
-import com.ethen.wechatshop.common.CommonConstant;
+import com.ethen.wechatshop.common.ComConstant;
 import com.ethen.wechatshop.common.TextUtil;
 import com.ethen.wechatshop.util.MessageHandlerUtil;
 import org.springframework.web.bind.annotation.*;
@@ -91,8 +91,8 @@ public class AccessController {
 
         // TODO 接收、处理、响应由微信服务器转发的用户发送给公众帐号的消息
         // 将请求、响应的编码均设置为UTF-8（防止中文乱码）
-        request.setCharacterEncoding(CommonConstant.UTF_8);
-        response.setCharacterEncoding(CommonConstant.UTF_8);
+        request.setCharacterEncoding(ComConstant.UTF_8);
+        response.setCharacterEncoding(ComConstant.UTF_8);
         System.err.println("请求进入...");
         String result = "";
         try {
@@ -100,7 +100,7 @@ public class AccessController {
             System.err.println("开始构造消息...");
             result = MessageHandlerUtil.buildXml(map,content);
             System.err.println(result);
-            if (result.equals(CommonConstant.BLANK_STR)) {
+            if (result.equals(ComConstant.BLANK_STR)) {
                 result = "未正确响应";
             }
         } catch (Exception e) {
@@ -119,7 +119,7 @@ public class AccessController {
     public Object accessToken() {
         System.err.println("************************** accessToken ***********************");
 
-        String accessToken = CacheUtil.get(CommonConstant.ACCESS_TOKEN);
+        String accessToken = CacheUtil.get(ComConstant.ACCESS_TOKEN);
 
         return TextUtil.success(accessToken);
     }

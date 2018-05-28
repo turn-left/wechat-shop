@@ -1,6 +1,6 @@
 package com.ethen.wechatshop.cms.common;
 
-public class Constant {
+public class CmsConstant {
 
     public static final String CMS_INDEX = "/cms/index";
     public static final String CMS_USER = "/cms/user";

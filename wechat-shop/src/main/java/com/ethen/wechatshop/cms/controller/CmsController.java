@@ -4,7 +4,6 @@ import com.ethen.wechatshop.cms.service.CmsService;
 import com.ethen.wechatshop.cms.service.UserService;
 import com.ethen.wechatshop.order.service.OrderService;
 import com.ethen.wechatshop.portal.vo.User;
-import com.sun.org.apache.xpath.internal.operations.Mod;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import static com.ethen.wechatshop.cms.common.Constant.*;
+import static com.ethen.wechatshop.cms.common.CmsConstant.*;
 import java.util.List;
 import java.util.Map;
 

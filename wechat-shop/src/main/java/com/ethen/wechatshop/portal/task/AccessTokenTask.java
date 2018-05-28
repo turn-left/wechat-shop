@@ -2,7 +2,7 @@ package com.ethen.wechatshop.portal.task;
 
 import com.ethen.wechatshop.portal.vo.AccessToken;
 import com.ethen.wechatshop.common.CacheUtil;
-import com.ethen.wechatshop.common.CommonConstant;
+import com.ethen.wechatshop.common.ComConstant;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.web.client.RestTemplate;
 
@@ -34,7 +34,7 @@ public class AccessTokenTask {
                     restTemplate.getForObject(url.replace("APPID",appID).replace("APPSECRET",appsecret), AccessToken.class);
             //todo 待接入 redis
             System.out.println("accessToken: " + accessToken);
-            CacheUtil.put(CommonConstant.ACCESS_TOKEN,accessToken.getAccess_token());
+            CacheUtil.put(ComConstant.ACCESS_TOKEN,accessToken.getAccess_token());
         } catch (Exception e){
             e.printStackTrace();
         }

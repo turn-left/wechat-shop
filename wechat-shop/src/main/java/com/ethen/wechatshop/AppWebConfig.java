@@ -14,16 +14,15 @@ public class AppWebConfig extends WebMvcConfigurerAdapter {
      * {@inheritDoc}
      * <p>This implementation is empty.
      * Description: 注册自定义拦截器
+     * Note: 拦截规则
      *
      * @param registry
      */
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
-//        super.addInterceptors(registry);
         registry.addInterceptor(new TokenInterceptor())
                 .addPathPatterns("/", "/**")
-//                .excludePathPatterns("/index")
-                .excludePathPatterns("/login", "portal/login", "/portal/toLogin")
+                .excludePathPatterns("/login").excludePathPatterns("portal/login", "/portal/toLogin")
                 .excludePathPatterns("/portal/logout");
     }
 }
