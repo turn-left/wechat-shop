@@ -1,10 +1,10 @@
 package com.ethen.wechatshop.portal.controller;
 
+import com.ethen.wechatshop.cms.vo.CmsUser;
 import com.ethen.wechatshop.common.ResponseVo;
 import com.ethen.wechatshop.portal.PortalConstant;
 import com.ethen.wechatshop.portal.authnew.JWT;
 import com.ethen.wechatshop.portal.service.LoginService;
-import com.ethen.wechatshop.portal.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -35,7 +35,7 @@ public class LoginConroller {
         System.err.println("password:" + passWord);
         System.err.println("veriCode:" + veriCode);
         //todo 验证码处理
-        User userInfo = loginService.login(userName, passWord);
+        CmsUser userInfo = loginService.login(userName, passWord);
         //验证通过构造jwt
         if (null != userInfo && !StringUtils.isEmpty(userInfo.getUserName())) {
 //            model.addAttribute("userInfo", userInfo);

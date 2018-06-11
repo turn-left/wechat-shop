@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="user">
-    <select id="selectUserInfo" resultType="User" parameterType="java.util.Map">
+    <select id="selectUserInfo" resultType="CmsUser" parameterType="java.util.Map">
         SELECT u.eu_user_id       "usesrId",
                u.eu_user_name     "userName",
                u.eu_sex           "sex",
@@ -18,7 +18,7 @@
            AND u.eu_password = #{password}
     </select>
 
-    <select id="selectUserInfoLIst" resultType="User">
+    <select id="selectUserInfoLIst" resultType="CmsUser">
         SELECT u.eu_user_id       "usesrId",
         u.eu_user_name     "userName",
         u.eu_sex           "sex",

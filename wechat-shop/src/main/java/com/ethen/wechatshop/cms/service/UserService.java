@@ -1,12 +1,12 @@
 package com.ethen.wechatshop.cms.service;
 
-import com.ethen.wechatshop.portal.vo.User;
+import com.ethen.wechatshop.cms.vo.CmsUser;
 
 import java.util.List;
 
 public interface UserService {
 
-    List<User> findAll(Object... params);
+    List<CmsUser> findAll(Object... params);
 
     int findTotalCount(Object... params);
 

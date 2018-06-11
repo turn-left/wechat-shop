@@ -1,7 +1,7 @@
 package com.ethen.wechatshop.cms.controller;
 
 import com.ethen.wechatshop.cms.service.UserService;
-import com.ethen.wechatshop.portal.vo.User;
+import com.ethen.wechatshop.cms.vo.CmsUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +25,7 @@ public class UserController {
 
     @RequestMapping("/findAll")
     public Object findAll(Model model) {
-        List<User> userList = userService.findAll();
+        List<CmsUser> userList = userService.findAll();
         int totalCount = userService.findTotalCount();
         log.info("UserController findAll userList:" + userList);
         model.addAttribute("userList", userList);

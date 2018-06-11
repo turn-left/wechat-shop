@@ -1,6 +1,6 @@
 package com.ethen.wechatshop;
 
-import com.ethen.wechatshop.portal.vo.User;
+import com.ethen.wechatshop.cms.vo.CmsUser;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -44,7 +44,7 @@ public class WechatShopApplication implements CommandLineRunner {
 		String hostIp = address.getHostAddress();
 		System.err.println("当前服务器ip: " + hostIp);
 		List<Map<String,Object>> cmsList = mysqlSession.selectList("cms.selectCmsUserList");
-		List<User> userList = sqlSession.selectList("selectUserInfoLIst");
+		List<CmsUser> userList = sqlSession.selectList("selectUserInfoLIst");
 		System.err.println("查询mysql表morning.cms_user: " + cmsList);
 		System.err.println("查询oracle: " + userList);
 	}

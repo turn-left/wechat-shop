@@ -1,9 +1,9 @@
 package com.ethen.wechatshop.portal.service;
 
-import com.ethen.wechatshop.portal.vo.User;
+import com.ethen.wechatshop.cms.vo.CmsUser;
 
 public interface LoginService {
 
-    public User login(String userName, String password);
+    public CmsUser login(String userName, String password);
 
     }

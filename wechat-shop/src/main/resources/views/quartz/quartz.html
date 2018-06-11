@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>quartz分布式demo</title>
+    <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
+</head>
+<body>
+
+
+//    private static String JOB_NAME = "jobDetail";
+//    private static String JOB_GROUP = "DEFAULT";
+//    private static String TRIGGER_NAME = "trigger";
+//    private static String TRIGGER_GROUP = "DEFAULT";
+//    private static String SCHED_NAME = "scheduler";
+
+
+<form role="form" th:action="@{/quartz/modifyJob}">
+    <div class="form-group">
+        <label for="jobName">jobName</label>
+        <input type="text" class="form-control" id="jobName"
+               placeholder="jobDetail" maxlength="100" name="jobName">
+    </div>
+    <div class="form-group">
+        <label for="jobGroupName">jobGroupName</label>
+        <input type="text" class="form-control" id="jobGroupName"
+               placeholder="DEFAULT" name="jobGroupName">
+    </div>
+    <div class="form-group">
+        <label for="triggerName">triggerName</label>
+        <input type="text" class="form-control" id="triggerName"
+               placeholder="trigger" name="triggerName">
+    </div>
+    <div class="form-group">
+        <label for="triggerGroupName">triggerGroupName</label>
+        <input type="text" class="form-control" id="triggerGroupName"
+               placeholder="DEFAULT" name="triggerGroupName">
+    </div>
+    <div class="form-group">
+        <label for="cron">cron</label>
+        <input type="text" class="form-control" id="cron"
+               placeholder="请输入cron表达式" name="cron">
+    </div>
+    <button type="submit" class="btn btn-default">提交</button>
+</form>
+</body>
+<script type="text/javascript" th:src="@{/js/jquery.min.js}"/>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"/>
+</html>

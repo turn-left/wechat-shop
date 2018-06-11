@@ -3,8 +3,9 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>易买网 - 首页</title>
+    <link href="https://cdn.bootcss.com/bootstrap-datetimepicker/4.17.47/css/bootstrap-datetimepicker.min.css" rel="stylesheet">
     <link rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.min.css}"/>
-    <link type="text/css" rel="stylesheet" href="css/style.css" th:href="@{/css/style.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
     <script type="text/javascript" src="scripts/function.js" th:src="@{/js/function.js}"></script>
     <script type="text/javascript" src="/160jsp8XM/scripts/calendar.js" th:src="@{/js/calendar.js}"></script>
     <script type="text/javascript">
@@ -70,13 +71,9 @@
             <form id="regForm" method="post" action="register" th:action="@{/portal/register}" onsubmit="return checkForm(this);">
                 <table>
                     <tr>
-                        <td class="field">用户名：</td>
-                        <td><input class="text" type="text" name="userName" onfocus="FocusItem(this)"
-                                   onblur="CheckItem(this),check(this.value);"/><span id="sp"></span></td>
-                    </tr>
-                    <tr>
-                        <td class="field">姓名：</td>
-                        <td><input type="text" class="text" name="name"/></td>
+                        <td class="field">账号：</td>
+                        <td><input class="text" type="text" name="userName" onfocus="FocusItem(this)" placeholder="手机号/邮箱账号"
+                                   onblur="CheckItem(this);"/><span id="sp"></span></td>
                     </tr>
                     <tr>
                         <td class="field">登录密码：</td>
@@ -87,6 +84,10 @@
                         <td class="field">确认密码：</td>
                         <td><input class="text" type="password" name="rePassWord" onfocus="FocusItem(this)"
                                    onblur="CheckItem(this);"/><span></span></td>
+                    </tr>
+                    <tr>
+                        <td class="field">姓名：</td>
+                        <td><input type="text" class="text" name="name"/></td>
                     </tr>
                     <tr>
                         <td class="field">性别：</td>
@@ -137,6 +138,26 @@
 </div>
 </body>
 <script type="text/javascript" th:src="@{/js/jquery.min.js}"/>
+<script src="https://cdn.bootcss.com/moment.js/2.18.1/moment-with-locales.min.js"></script>
+<script src="https://cdn.bootcss.com/moment.js/2.18.1/moment-with-locales.min.js"/>
 <script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.min.js}"/>
+<script type="text/javascript">
+    var req_data =
+    //*当用户输出入用户id时判定是否已占用
+    function check_user() {
+        $.ajax({
+            type:'POST',
+            contentType:"application/json;charset=utf-8",
+            url:"/portal/register/checkUser",
+            dataType:"json",
+            success:function (data) {
+
+            },
+            error:function (data) {
+
+            }
+        });
+    }
+</script>
 </html>
 

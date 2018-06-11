@@ -1,8 +1,8 @@
-package com.ethen.wechatshop.portal.vo;
+package com.ethen.wechatshop.cms.vo;
 
 import java.util.Date;
 
-public class User {
+public class CmsUser {
     //保证用户名唯一(用户名为登录账户名)
     private String userName;
     private String passWord;
@@ -15,7 +15,7 @@ public class User {
     private String status;
 
 
-    public User() {
+    public CmsUser() {
     }
 
     public String getUserName() {
@@ -92,7 +92,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" +
+        return "CmsUser{" +
                 "userName='" + userName + '\'' +
                 ", passWord='" + passWord + '\'' +
                 ", sex='" + sex + '\'' +

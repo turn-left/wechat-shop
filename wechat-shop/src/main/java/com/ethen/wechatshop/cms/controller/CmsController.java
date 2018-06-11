@@ -2,8 +2,8 @@ package com.ethen.wechatshop.cms.controller;
 
 import com.ethen.wechatshop.cms.service.CmsService;
 import com.ethen.wechatshop.cms.service.UserService;
+import com.ethen.wechatshop.cms.vo.CmsUser;
 import com.ethen.wechatshop.order.service.OrderService;
-import com.ethen.wechatshop.portal.vo.User;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,7 +46,7 @@ public class CmsController {
      */
     @RequestMapping(value = "/user", method = RequestMethod.GET)
     public Object user(Model model) {
-        List<User> userList = userService.findAll();
+        List<CmsUser> userList = userService.findAll();
         log.info("UserController findAll userList:" + userList);
         model.addAttribute("userList", userList);
         return CMS_USER;

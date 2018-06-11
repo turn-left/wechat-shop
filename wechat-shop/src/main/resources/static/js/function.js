@@ -23,7 +23,7 @@ function CheckItem(obj) {
     switch (obj.name) {
         case "userName":
             if (obj.value == "") {
-                msgBox.innerHTML = "用户名不能为空";
+                msgBox.innerHTML = "账号不能为空";
                 msgBox.className = "error";
                 return false;
             }
@@ -72,7 +72,6 @@ function CheckItem(obj) {
 }
 
 function checkForm(frm) {
-    alert("hey!001")
     var els = frm.getElementsByTagName("input");
     for (var i = 0; i < els.length; i++) {
         //if(typeof(els[i].getAttribute("onblur")) == "string") {
@@ -189,6 +188,10 @@ function reloadPrice(id, status) {
     priceBox.innerHTML = "￥" + price * number.value;
 }
 
+
+/**
+ * 验证用户名是否被占用,目前不需要,我们采取手机号注册的方式全局唯一
+ */
 var ajax;
 
 function check(name) {
@@ -197,7 +200,8 @@ function check(name) {
     } else if (window.ActiveXObject) {
         ajax = new ActiveXObject();
     }
-    var url = "usernamecheck?name=" + encodeURI(name) + "&" + new Date().getTime();
+    // var url = "usernamecheck?name=" + encodeURI(name) + "&" + new Date().getTime();
+    var url = "";
     ajax.onreadystatechange = check2;
     ajax.open("get", url, true);
     ajax.send();

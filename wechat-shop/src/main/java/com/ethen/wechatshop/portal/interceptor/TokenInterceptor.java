@@ -1,10 +1,10 @@
 package com.ethen.wechatshop.portal.interceptor;
 
+import com.ethen.wechatshop.cms.vo.CmsUser;
 import com.ethen.wechatshop.common.ResponseEnum;
 import com.ethen.wechatshop.common.ResponseVo;
 import com.ethen.wechatshop.portal.PortalConstant;
 import com.ethen.wechatshop.portal.authnew.JWT;
-import com.ethen.wechatshop.portal.vo.User;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Component;
@@ -44,11 +44,11 @@ public class TokenInterceptor implements HandlerInterceptor {
                 }
             }
             if (!StringUtils.isEmpty(token)) {
-                User user = JWT.unsign(token, User.class);
+                CmsUser user = JWT.unsign(token, CmsUser.class);
                 if (null != user && null != loginId) {
                     if (loginId.equals(user.getUserName())) {
                         //封装用户信息
-                        User userInfo = new User();
+                        CmsUser userInfo = new CmsUser();
                         userInfo.setUserName(loginId);
                         userInfo.setStatus(user.getStatus());
                         request.setAttribute("userInfo", userInfo);

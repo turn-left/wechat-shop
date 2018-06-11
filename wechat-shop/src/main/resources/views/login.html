@@ -66,20 +66,16 @@
             <form id="loginForm" method="post" th:action="@{/login}" onsubmit="return checkSubmit()">  <!--onsubmit="return checkForm(this)"-->
                 <table>
                     <tr>
-                        <td class="field">用户名：</td>
+                        <td class="field">账号：</td>
                         <td><input id="uNameLogin" class="text" type="text" name="userName" onfocus="FocusItem(this)"
                                    onblur="CheckItem(this);"/><span></span></td>
                     </tr>
                     <tr>
-                        <td class="field" id="uPwdLogin">登录密码：</td>
+                        <td class="field" id="uPwdLogin">密码：</td>
                         <td><input class="text" type="password" id="passWord" name="passWord" onfocus="FocusItem(this)"
                                    onblur="CheckItem(this);"/><span></span></td>
                     </tr>
                     <tr>
-                        <!--<td class="field">验证码：</td>-->
-                        <!--<td><input class="text verycode" type="text" name="veriCode" onfocus="FocusItem(this)"-->
-                                   <!--onblur="Checknum(this);"/>-->
-                            <!--<img id="veryCode" alt="看不清,换一张" style="cursor:hand;" src="usernum?<%=new Date().getTime() %>" onclick="change(this)" />-->
                             <td class="field"></td>
                             <td><span id="msg" class="text"></span></td>
                     </tr>

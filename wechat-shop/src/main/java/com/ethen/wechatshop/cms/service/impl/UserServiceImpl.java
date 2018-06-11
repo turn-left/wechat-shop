@@ -1,7 +1,7 @@
 package com.ethen.wechatshop.cms.service.impl;
 
 import com.ethen.wechatshop.cms.service.UserService;
-import com.ethen.wechatshop.portal.vo.User;
+import com.ethen.wechatshop.cms.vo.CmsUser;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ public class UserServiceImpl implements UserService {
     @Autowired
     SqlSessionTemplate sqlSession;
 
-    public List<User> findAll(Object... params) {
+    public List<CmsUser> findAll(Object... params) {
        return sqlSession.selectList("cms.findUserList",params);
     }
 
