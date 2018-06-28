@@ -40,12 +40,12 @@ public class WechatShopApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		//获取的是本地的IP地址
-		InetAddress address = InetAddress.getLocalHost();
-		String hostIp = address.getHostAddress();
-		System.err.println("当前服务器ip: " + hostIp);
-		List<Map<String,Object>> cmsList = mysqlSession.selectList("cms.selectCmsUserList");
-		List<CmsUser> userList = sqlSession.selectList("selectUserInfoLIst");
-		System.err.println("查询mysql表morning.cms_user: " + cmsList);
-		System.err.println("查询oracle: " + userList);
+//		InetAddress address = InetAddress.getLocalHost();
+//		String hostIp = address.getHostAddress();
+//		System.err.println("当前服务器ip: " + hostIp);
+//		List<Map<String,Object>> cmsList = mysqlSession.selectList("cms.selectCmsUserList");
+//		List<CmsUser> userList = sqlSession.selectList("selectUserInfoLIst");
+//		System.err.println("查询mysql表morning.cms_user: " + cmsList);
+//		System.err.println("查询oracle: " + userList);
 	}
 }

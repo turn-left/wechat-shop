@@ -3,21 +3,20 @@ package com.ethen.wechatshop.quartz.job;
 import org.joda.time.DateTime;
 import org.springframework.stereotype.Service;
 
+import java.net.InetAddress;
+import java.net.UnknownHostException;
+
 @Service("simpleService")
 public class MyJob {
 
 
-    public void doJob() {
-        //*这里执行真正的定时任务逻辑
-//        for (long i = 0L; i < 2_000_000_000L; i++) {
-//            String str = "";
-//            if (i % 300_000_000 == 0) {
-//                str += "_" + i;     //模拟耗时操作
-//            }
-//        }
+    public void doJob() throws UnknownHostException {
+        InetAddress localhost = InetAddress.getLocalHost();
+        String hostAddr = localhost.getHostAddress();
+        String hostName = localhost.getHostName();
+        System.err.println("MyJob is running... now: " + DateTime.now().toLocalDateTime().toString());
+        System.err.println("hostName: " + hostName + ",hostAddr: " + hostAddr);
 
-        System.err.println("MyJob is running... now: " +
-                DateTime.now().toLocalDateTime().toString());
     }
 
 }

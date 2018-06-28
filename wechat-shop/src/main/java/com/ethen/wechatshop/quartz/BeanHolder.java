@@ -13,7 +13,7 @@ import org.springframework.scheduling.quartz.SchedulerFactoryBean;
 
 import javax.sql.DataSource;
 
-@Configuration
+//@Configuration
 public class BeanHolder {
 
     @Bean

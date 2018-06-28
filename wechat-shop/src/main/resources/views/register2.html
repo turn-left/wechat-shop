@@ -1,0 +1,44 @@
+<!DOCTYPE html >
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>易买网 - 首页</title>
+    <link type="text/css" rel="stylesheet" th:href="@{/css/style.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/bootstrap/css/bootstrap.css}"/>
+    <link type="text/css" rel="stylesheet" th:href="@{/bstep/css/bs-is-fun.css}"/>
+</head>
+<body>
+    <div id="logo-box">
+        <div id="logo-gif">
+            <img src="logo.gif" th:src="@{/img/logo.gif}"/>
+        </div>
+        <div class="logo-title">欢迎注册</div>
+        <div class="have-account">已有账号?<a th:href="@{/portal/toLogin}">请登录</a></div>
+    </div>
+<div id="register-step">
+    <!-- 正方形 -->
+    <div id="progress-square">
+        <ul class="nav nav-pills nav-justified step step-square">
+            <li class="active">
+                <a>验证手机号</a>
+            </li>
+            <li>
+                <a>填写账号信息</a>
+            </li>
+            <li>
+                <a>注册完成</a>
+            </li>
+        </ul>
+    </div>
+</div>
+
+
+<div id="footer">
+    Copyright &copy; 2010 ethen All Rights Reserved. 京ICP证1000001号
+</div>
+</body>
+<script type="text/javascript" th:src="@{/js/jquery.min.js}"/>
+<script type="text/javascript" th:src="@{/bstep/js/brush.js}"/>
+<script type="text/javascript" th:src="@{/bootstrap/js/bootstrap.js}"/>
+</html>
+

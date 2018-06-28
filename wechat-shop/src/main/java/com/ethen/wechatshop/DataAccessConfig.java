@@ -11,6 +11,9 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.support.TransactionTemplate;
+import redis.clients.jedis.Transaction;
 
 import javax.sql.DataSource;
 
@@ -32,6 +35,26 @@ public class DataAccessConfig {
 
     @Autowired
     DatasourceProps props;
+
+    /**
+     * spring編程式事務->適用于MySQL數據源
+     * @param dataSourceTransactionManager
+     * @return
+     */
+    @Bean
+    public TransactionTemplate transactionTemplate(DataSourceTransactionManager dataSourceTransactionManager) {
+        return new TransactionTemplate(dataSourceTransactionManager);
+    }
+
+    /**
+     * spring編程式事務->適用于MySQL數據源
+     * @param mysqlDataSource
+     * @return
+     */
+    @Bean
+    public DataSourceTransactionManager transactionManager(DataSource mysqlDataSource) {
+        return new DataSourceTransactionManager(mysqlDataSource);
+    }
 
 
     /***************************************************** mysql ******************************************************/

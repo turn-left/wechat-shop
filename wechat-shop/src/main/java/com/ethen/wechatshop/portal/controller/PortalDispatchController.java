@@ -12,7 +12,7 @@ public class PortalDispatchController {
 
     @RequestMapping("/toRegister")
     public Object toRegister() {
-        return "register";
+        return "register2";
     }
 
     @RequestMapping("/toLogin")

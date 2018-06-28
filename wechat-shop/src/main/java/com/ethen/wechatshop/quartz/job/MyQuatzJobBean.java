@@ -4,6 +4,8 @@ import org.quartz.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.scheduling.quartz.QuartzJobBean;
 
+import java.net.UnknownHostException;
+
 
 @PersistJobDataAfterExecution
 //@DisallowConcurrentExecution    //不允许并发执行
@@ -21,7 +23,11 @@ public class MyQuatzJobBean extends QuartzJobBean {
     @Override
     protected void executeInternal(JobExecutionContext context) throws JobExecutionException {
         MyJob simpleService = getApplicationContext(context).getBean("simpleService",MyJob.class);
-        simpleService.doJob();//执行业务逻辑
+        try {
+            simpleService.doJob();//执行业务逻辑
+        } catch (UnknownHostException e) {
+            e.printStackTrace();
+        }
     }
 
 
