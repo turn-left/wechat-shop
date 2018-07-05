@@ -20,41 +20,41 @@ package com.ethen.wechatshop.learning.poi;
 import java.io.FilenameFilter;
 
 
-        import java.io.BufferedWriter;
-        import java.io.File;
-        import java.io.FileInputStream;
-        import java.io.FileNotFoundException;
-        import java.io.FileWriter;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
-        import java.util.ArrayList;
+import java.util.ArrayList;
 
-        import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
-        import org.apache.poi.ss.usermodel.Cell;
-        import org.apache.poi.ss.usermodel.CellType;
-        import org.apache.poi.ss.usermodel.DataFormatter;
-        import org.apache.poi.ss.usermodel.FormulaEvaluator;
-        import org.apache.poi.ss.usermodel.Row;
-        import org.apache.poi.ss.usermodel.Sheet;
-        import org.apache.poi.ss.usermodel.Workbook;
-        import org.apache.poi.ss.usermodel.WorkbookFactory;
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellType;
+import org.apache.poi.ss.usermodel.DataFormatter;
+import org.apache.poi.ss.usermodel.FormulaEvaluator;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
+import org.apache.poi.ss.usermodel.WorkbookFactory;
 
 /**
  * Demonstrates <em>one</em> way to convert an Excel spreadsheet into a CSV
  * file. This class makes the following assumptions;
  * <list>
  * <li>1. Where the Excel workbook contains more that one worksheet, then a single
- *    CSV file will contain the data from all of the worksheets.</li>
+ * CSV file will contain the data from all of the worksheets.</li>
  * <li>2. The data matrix contained in the CSV file will be square. This means that
- *    the number of fields in each record of the CSV file will match the number
- *    of cells in the longest row found in the Excel workbook. Any short records
- *    will be 'padded' with empty fields - an empty field is represented in the
- *    the CSV file in this way - ,,.</li>
+ * the number of fields in each record of the CSV file will match the number
+ * of cells in the longest row found in the Excel workbook. Any short records
+ * will be 'padded' with empty fields - an empty field is represented in the
+ * the CSV file in this way - ,,.</li>
  * <li>3. Empty fields will represent missing cells.</li>
  * <li>4. A record consisting of empty fields will be used to represent an empty row
- *    in the Excel workbook.</li>
+ * in the Excel workbook.</li>
  * </list>
  * Therefore, if the worksheet looked like this;
- *
+ * <p>
  * <pre>
  *  ___________________________________________
  *     |       |       |       |       |       |
@@ -77,7 +77,7 @@ import java.io.IOException;
  *  ___|_______|_______|_______|_______|_______|
  *
  * </pre>
- *
+ * <p>
  * Then, the resulting CSV file will contain the following lines (records);
  * <pre>
  * 1,2,3,4,5
@@ -119,17 +119,18 @@ import java.io.IOException;
  * class has to be modified to produce files to suit a specific application
  * or requirement.
  * </p>
+ *
  * @author Mark B
  * @version 1.00 9th April 2010
- *          1.10 13th April 2010 - Added support for processing all Excel
- *                                 workbooks in a folder along with the ability
- *                                 to specify a field separator character.
- *          2.00 14th April 2010 - Added support for embedded characters; the
- *                                 field separator, EOL and double quotes or
- *                                 speech marks. In addition, gave the client
- *                                 the ability to select how these are handled,
- *                                 either obeying Excel's or UNIX formatting
- *                                 conventions.
+ * 1.10 13th April 2010 - Added support for processing all Excel
+ * workbooks in a folder along with the ability
+ * to specify a field separator character.
+ * 2.00 14th April 2010 - Added support for embedded characters; the
+ * field separator, EOL and double quotes or
+ * speech marks. In addition, gave the client
+ * the ability to select how these are handled,
+ * either obeying Excel's or UNIX formatting
+ * conventions.
  */
 public class ToCSV {
 
@@ -167,25 +168,25 @@ public class ToCSV {
      * characters such as the field separator, the EOL and double quotes are
      * escaped in accordance with Excel's convention.
      *
-     * @param strSource An instance of the String class that encapsulates the
-     *        name of and path to either a folder containing those Excel
-     *        workbook(s) or the name of and path to an individual Excel workbook
-     *        that is/are to be converted.
+     * @param strSource      An instance of the String class that encapsulates the
+     *                       name of and path to either a folder containing those Excel
+     *                       workbook(s) or the name of and path to an individual Excel workbook
+     *                       that is/are to be converted.
      * @param strDestination An instance of the String class encapsulating the
-     *        name of and path to a folder that will contain the resulting CSV
-     *        files.
-     * @throws java.io.FileNotFoundException Thrown if any file cannot be located
-     *         on the filesystem during processing.
-     * @throws java.io.IOException Thrown if the filesystem encounters any
-     *         problems during processing.
-     * @throws java.lang.IllegalArgumentException Thrown if the values passed
-     *         to the strSource parameter refers to a file or folder that does not
-     *         exist or if the value passed to the strDestination paramater refers
-     *         to a folder that does not exist or simply does not refer to a
-     *         folder.
+     *                       name of and path to a folder that will contain the resulting CSV
+     *                       files.
+     * @throws java.io.FileNotFoundException                              Thrown if any file cannot be located
+     *                                                                    on the filesystem during processing.
+     * @throws java.io.IOException                                        Thrown if the filesystem encounters any
+     *                                                                    problems during processing.
+     * @throws java.lang.IllegalArgumentException                         Thrown if the values passed
+     *                                                                    to the strSource parameter refers to a file or folder that does not
+     *                                                                    exist or if the value passed to the strDestination paramater refers
+     *                                                                    to a folder that does not exist or simply does not refer to a
+     *                                                                    folder.
      * @throws org.apache.poi.openxml4j.exceptions.InvalidFormatException Thrown
-     *         if the xml markup encountered whilst parsing a SpreadsheetML
-     *         file (.xlsx) is invalid.
+     *                                                                    if the xml markup encountered whilst parsing a SpreadsheetML
+     *                                                                    file (.xlsx) is invalid.
      */
     public void convertExcelToCSV(String strSource, String strDestination)
             throws FileNotFoundException, IOException,
@@ -208,28 +209,28 @@ public class ToCSV {
      * as the field separator, the EOL and double quotes are escaped in
      * accordance with Excel's convention.
      *
-     * @param strSource An instance of the String class that encapsulates the
-     *        name of and path to either a folder containing those Excel
-     *        workbook(s) or the name of and path to an individual Excel workbook
-     *        that is/are to be converted.
+     * @param strSource      An instance of the String class that encapsulates the
+     *                       name of and path to either a folder containing those Excel
+     *                       workbook(s) or the name of and path to an individual Excel workbook
+     *                       that is/are to be converted.
      * @param strDestination An instance of the String class encapsulating the
-     *        name of and path to a folder that will contain the resulting CSV
-     *        files.
-     * @param separator An instance of the String class that encapsulates the
-     *        character or characters the client wishes to use as the field
-     *        separator.
-     * @throws java.io.FileNotFoundException Thrown if any file cannot be located
-     *         on the filesystem during processing.
-     * @throws java.io.IOException Thrown if the filesystem encounters any
-     *         problems during processing.
-     * @throws java.lang.IllegalArgumentException Thrown if the values passed
-     *         to the strSource parameter refers to a file or folder that does not
-     *         exist or if the value passed to the strDestination paramater refers
-     *         to a folder that does not exist or simply does not refer to a
-     *         folder.
+     *                       name of and path to a folder that will contain the resulting CSV
+     *                       files.
+     * @param separator      An instance of the String class that encapsulates the
+     *                       character or characters the client wishes to use as the field
+     *                       separator.
+     * @throws java.io.FileNotFoundException                              Thrown if any file cannot be located
+     *                                                                    on the filesystem during processing.
+     * @throws java.io.IOException                                        Thrown if the filesystem encounters any
+     *                                                                    problems during processing.
+     * @throws java.lang.IllegalArgumentException                         Thrown if the values passed
+     *                                                                    to the strSource parameter refers to a file or folder that does not
+     *                                                                    exist or if the value passed to the strDestination paramater refers
+     *                                                                    to a folder that does not exist or simply does not refer to a
+     *                                                                    folder.
      * @throws org.apache.poi.openxml4j.exceptions.InvalidFormatException Thrown
-     *         if the xml markup encounetered whilst parsing a SpreadsheetML
-     *         file (.xlsx) is invalid.
+     *                                                                    if the xml markup encounetered whilst parsing a SpreadsheetML
+     *                                                                    file (.xlsx) is invalid.
      */
     public void convertExcelToCSV(String strSource, String strDestination,
                                   String separator)
@@ -250,35 +251,35 @@ public class ToCSV {
      * folder using the same name as the original workbook with the .xls or
      * .xlsx extension replaced by .csv
      *
-     * @param strSource An instance of the String class that encapsulates the
-     *        name of and path to either a folder containing those Excel
-     *        workbook(s) or the name of and path to an individual Excel workbook
-     *        that is/are to be converted.
-     * @param strDestination An instance of the String class encapsulating the name
-     *        of and path to a folder that will contain the resulting CSV files.
+     * @param strSource            An instance of the String class that encapsulates the
+     *                             name of and path to either a folder containing those Excel
+     *                             workbook(s) or the name of and path to an individual Excel workbook
+     *                             that is/are to be converted.
+     * @param strDestination       An instance of the String class encapsulating the name
+     *                             of and path to a folder that will contain the resulting CSV files.
      * @param formattingConvention A primitive int whose value will determine
-     *        whether certain embedded characters should be escaped in accordance
-     *        with Excel's or UNIX formatting conventions. Two constants are
-     *        defined to support this option; ToCSV.EXCEL_STYLE_ESCAPING and
-     *        ToCSV.UNIX_STYLE_ESCAPING
-     * @param separator An instance of the String class encapsulating the
-     *        characters or characters that should be used to separate items
-     *        on a line within the CSV file.
-     * @throws java.io.FileNotFoundException Thrown if any file cannot be located
-     *         on the filesystem during processing.
-     * @throws java.io.IOException Thrown if the filesystem encounters any
-     *         problems during processing.
-     * @throws java.lang.IllegalArgumentException Thrown if the values passed
-     *         to the strSource parameter refers to a file or folder that does not
-     *         exist, if the value passed to the strDestination paramater refers
-     *         to a folder that does not exist,  if the value passed to the
-     *         strDestination parameter does not refer to a folder or if the
-     *         value passed to the formattingConvention parameter is other than
-     *         one of the values defined by the constants ToCSV.EXCEL_STYLE_ESCAPING
-     *         and ToCSV.UNIX_STYLE_ESCAPING.
+     *                             whether certain embedded characters should be escaped in accordance
+     *                             with Excel's or UNIX formatting conventions. Two constants are
+     *                             defined to support this option; ToCSV.EXCEL_STYLE_ESCAPING and
+     *                             ToCSV.UNIX_STYLE_ESCAPING
+     * @param separator            An instance of the String class encapsulating the
+     *                             characters or characters that should be used to separate items
+     *                             on a line within the CSV file.
+     * @throws java.io.FileNotFoundException                              Thrown if any file cannot be located
+     *                                                                    on the filesystem during processing.
+     * @throws java.io.IOException                                        Thrown if the filesystem encounters any
+     *                                                                    problems during processing.
+     * @throws java.lang.IllegalArgumentException                         Thrown if the values passed
+     *                                                                    to the strSource parameter refers to a file or folder that does not
+     *                                                                    exist, if the value passed to the strDestination paramater refers
+     *                                                                    to a folder that does not exist,  if the value passed to the
+     *                                                                    strDestination parameter does not refer to a folder or if the
+     *                                                                    value passed to the formattingConvention parameter is other than
+     *                                                                    one of the values defined by the constants ToCSV.EXCEL_STYLE_ESCAPING
+     *                                                                    and ToCSV.UNIX_STYLE_ESCAPING.
      * @throws org.apache.poi.openxml4j.exceptions.InvalidFormatException Thrown
-     *         if the xml markup encounetered whilst parsing a SpreadsheetML
-     *         file (.xlsx) is invalid.
+     *                                                                    if the xml markup encounetered whilst parsing a SpreadsheetML
+     *                                                                    file (.xlsx) is invalid.
      */
     public void convertExcelToCSV(String strSource, String strDestination,
                                   String separator, int formattingConvention)
@@ -290,7 +291,7 @@ public class ToCSV {
         String destinationFilename;
 
         // Check that the source file/folder exists.
-        if(!source.exists()) {
+        if (!source.exists()) {
             throw new IllegalArgumentException("The source for the Excel " +
                     "file(s) cannot be found.");
         }
@@ -298,18 +299,18 @@ public class ToCSV {
         // Ensure thaat the folder the user has chosen to save the CSV files
         // away into firstly exists and secondly is a folder rather than, for
         // instance, a data file.
-        if(!destination.exists()) {
+        if (!destination.exists()) {
             throw new IllegalArgumentException("The folder/directory for the " +
                     "converted CSV file(s) does not exist.");
         }
-        if(!destination.isDirectory()) {
+        if (!destination.isDirectory()) {
             throw new IllegalArgumentException("The destination for the CSV " +
                     "file(s) is not a directory/folder.");
         }
 
         // Ensure the value passed to the formattingConvention parameter is
         // within range.
-        if(formattingConvention != ToCSV.EXCEL_STYLE_ESCAPING &&
+        if (formattingConvention != ToCSV.EXCEL_STYLE_ESCAPING &&
                 formattingConvention != ToCSV.UNIX_STYLE_ESCAPING) {
             throw new IllegalArgumentException("The value passed to the " +
                     "formattingConvention parameter is out of range.");
@@ -322,12 +323,11 @@ public class ToCSV {
 
         // Check to see if the sourceFolder variable holds a reference to
         // a file or a folder full of files.
-        if(source.isDirectory()) {
+        if (source.isDirectory()) {
             // Get a list of all of the Excel spreadsheet files (workbooks) in
             // the source folder/directory
             filesList = source.listFiles(new ExcelFilenameFilter());
-        }
-        else {
+        } else {
             // Assume that it must be a file handle - although there are other
             // options the code should perhaps check - and store the reference
             // into the filesList variable.
@@ -346,7 +346,7 @@ public class ToCSV {
         // for both CSV files will be identical and one CSV file will,
         // therefore, over-write the other.
         if (filesList != null) {
-            for(File excelFile : filesList) {
+            for (File excelFile : filesList) {
                 // Open the workbook
                 this.openWorkbook(excelFile);
 
@@ -371,13 +371,13 @@ public class ToCSV {
      * Open an Excel workbook ready for conversion.
      *
      * @param file An instance of the File class that encapsulates a handle
-     *        to a valid Excel workbook. Note that the workbook can be in
-     *        either binary (.xls) or SpreadsheetML (.xlsx) format.
-     * @throws java.io.FileNotFoundException Thrown if the file cannot be located.
-     * @throws java.io.IOException Thrown if a problem occurs in the file system.
+     *             to a valid Excel workbook. Note that the workbook can be in
+     *             either binary (.xls) or SpreadsheetML (.xlsx) format.
+     * @throws java.io.FileNotFoundException                              Thrown if the file cannot be located.
+     * @throws java.io.IOException                                        Thrown if a problem occurs in the file system.
      * @throws org.apache.poi.openxml4j.exceptions.InvalidFormatException Thrown
-     *         if invalid xml is found whilst parsing an input SpreadsheetML
-     *         file.
+     *                                                                    if invalid xml is found whilst parsing an input SpreadsheetML
+     *                                                                    file.
      */
     private void openWorkbook(File file) throws FileNotFoundException,
             IOException, InvalidFormatException {
@@ -394,9 +394,8 @@ public class ToCSV {
             this.workbook = WorkbookFactory.create(fis);
             this.evaluator = this.workbook.getCreationHelper().createFormulaEvaluator();
             this.formatter = new DataFormatter(true);
-        }
-        finally {
-            if(fis != null) {
+        } finally {
+            if (fis != null) {
                 fis.close();
             }
         }
@@ -418,12 +417,12 @@ public class ToCSV {
         int numSheets = this.workbook.getNumberOfSheets();
 
         // and then iterate through them.
-        for(int i = 0; i < numSheets; i++) {
+        for (int i = 0; i < numSheets; i++) {
 
             // Get a reference to a sheet and check to see if it contains
             // any rows.
             sheet = this.workbook.getSheetAt(i);
-            if(sheet.getPhysicalNumberOfRows() > 0) {
+            if (sheet.getPhysicalNumberOfRows() > 0) {
 
                 // Note down the index number of the bottom-most row and
                 // then iterate through all of the rows on the sheet starting
@@ -432,7 +431,7 @@ public class ToCSV {
                 // which will strip the data from the cells and build lines
                 // for inclusion in the resylting CSV file.
                 lastRowNum = sheet.getLastRowNum();
-                for(int j = 0; j <= lastRowNum; j++) {
+                for (int j = 0; j <= lastRowNum; j++) {
                     row = sheet.getRow(j);
                     this.rowToCSV(row);
                 }
@@ -447,8 +446,8 @@ public class ToCSV {
      * @param file An instance of the File class that encapsulates a handle
      *             referring to the CSV file.
      * @throws java.io.FileNotFoundException Thrown if the file cannot be found.
-     * @throws java.io.IOException Thrown to indicate and error occurred in the
-     *                             underylying file system.
+     * @throws java.io.IOException           Thrown to indicate and error occurred in the
+     *                                       underylying file system.
      */
     private void saveCSVFile(File file)
             throws FileNotFoundException, IOException {
@@ -464,7 +463,7 @@ public class ToCSV {
             // Step through the elements of the ArrayList that was used to hold
             // all of the data recovered from the Excel workbooks' sheets, rows
             // and cells.
-            for(int i = 0; i < this.csvData.size(); i++) {
+            for (int i = 0; i < this.csvData.size(); i++) {
                 buffer = new StringBuffer();
 
                 // Get an element from the ArrayList that contains the data for
@@ -480,15 +479,15 @@ public class ToCSV {
                 // processed. If it does, then an element will be recovered and
                 // appended to the StringBuffer.
                 line = this.csvData.get(i);
-                for(int j = 0; j < this.maxRowWidth; j++) {
-                    if(line.size() > j) {
+                for (int j = 0; j < this.maxRowWidth; j++) {
+                    if (line.size() > j) {
                         csvLineElement = line.get(j);
-                        if(csvLineElement != null) {
+                        if (csvLineElement != null) {
                             buffer.append(this.escapeEmbeddedCharacters(
                                     csvLineElement));
                         }
                     }
-                    if(j < (this.maxRowWidth - 1)) {
+                    if (j < (this.maxRowWidth - 1)) {
                         buffer.append(this.separator);
                     }
                 }
@@ -499,7 +498,7 @@ public class ToCSV {
                 // Condition the inclusion of new line characters so as to
                 // avoid an additional, superfluous, new line at the end of
                 // the file.
-                if(i < (this.csvData.size() - 1)) {
+                if (i < (this.csvData.size() - 1)) {
                     bw.newLine();
                 }
             }
@@ -522,23 +521,21 @@ public class ToCSV {
         // Check to ensure that a row was recovered from the sheet as it is
         // possible that one or more rows between other populated rows could be
         // missing - blank. If the row does contain cells then...
-        if(row != null) {
+        if (row != null) {
 
             // Get the index for the right most cell on the row and then
             // step along the row from left to right recovering the contents
             // of each cell, converting that into a formatted String and
             // then storing the String into the csvLine ArrayList.
             lastCellNum = row.getLastCellNum();
-            for(int i = 0; i <= lastCellNum; i++) {
+            for (int i = 0; i <= lastCellNum; i++) {
                 cell = row.getCell(i);
-                if(cell == null) {
+                if (cell == null) {
                     csvLine.add("");
-                }
-                else {
-                    if(cell.getCellType() != CellType.FORMULA.getCode()) {
+                } else {
+                    if (cell.getCellType() != CellType.FORMULA.getCode()) {
                         csvLine.add(this.formatter.formatCellValue(cell));
-                    }
-                    else {
+                    } else {
                         csvLine.add(this.formatter.formatCellValue(cell, this.evaluator));
                     }
                 }
@@ -546,7 +543,7 @@ public class ToCSV {
             // Make a note of the index number of the right most cell. This value
             // will later be used to ensure that the matrix of data in the CSV file
             // is square.
-            if(lastCellNum > this.maxRowWidth) {
+            if (lastCellNum > this.maxRowWidth) {
                 this.maxRowWidth = lastCellNum;
             }
         }
@@ -559,12 +556,12 @@ public class ToCSV {
      * any embedded characters that must be escaped. The method is able to
      * comply with either Excel's or UNIX formatting conventions in the
      * following manner;
-     *
+     * <p>
      * With regard to UNIX conventions, if the field contains any embedded
      * field separator or EOL characters they will each be escaped by prefixing
      * a leading backspace character. These are the only changes that have yet
      * emerged following some research as being required.
-     *
+     * <p>
      * Excel has other embedded character escaping requirements, some that emerged
      * from empirical testing, other through research. Firstly, with regards to
      * any embedded speech marks ("), each occurrence should be escaped with
@@ -579,7 +576,7 @@ public class ToCSV {
      * additional set of speech marks that should be placed around ay field
      * containing embedded speech marks will also account for the embedded
      * separator.
-     *
+     * <p>
      * It is worth making one further note with regard to embedded EOL
      * characters. If the data in a worksheet is exported as a CSV file using
      * Excel itself, then the field will be surounded with speech marks. If the
@@ -588,52 +585,51 @@ public class ToCSV {
      * one cell. This same 'feature' is replicated in this classes behaviour.
      *
      * @param field An instance of the String class encapsulating the formatted
-     *        contents of a cell on an Excel worksheet.
+     *              contents of a cell on an Excel worksheet.
      * @return A String that encapsulates the formatted contents of that
-     *         Excel worksheet cell but with any embedded separator, EOL or
-     *         speech mark characters correctly escaped.
+     * Excel worksheet cell but with any embedded separator, EOL or
+     * speech mark characters correctly escaped.
      */
     private String escapeEmbeddedCharacters(String field) {
         StringBuffer buffer;
 
         // If the fields contents should be formatted to confrom with Excel's
         // convention....
-        if(this.formattingConvention == ToCSV.EXCEL_STYLE_ESCAPING) {
+        if (this.formattingConvention == ToCSV.EXCEL_STYLE_ESCAPING) {
 
             // Firstly, check if there are any speech marks (") in the field;
             // each occurrence must be escaped with another set of spech marks
             // and then the entire field should be enclosed within another
             // set of speech marks. Thus, "Yes" he said would become
             // """Yes"" he said"
-            if(field.contains("\"")) {
+            if (field.contains("\"")) {
                 buffer = new StringBuffer(field.replaceAll("\"", "\\\"\\\""));
                 buffer.insert(0, "\"");
                 buffer.append("\"");
-            }
-            else {
+            } else {
                 // If the field contains either embedded separator or EOL
                 // characters, then escape the whole field by surrounding it
                 // with speech marks.
                 buffer = new StringBuffer(field);
-                if((buffer.indexOf(this.separator)) > -1 ||
+                if ((buffer.indexOf(this.separator)) > -1 ||
                         (buffer.indexOf("\n")) > -1) {
                     buffer.insert(0, "\"");
                     buffer.append("\"");
                 }
             }
-            return(buffer.toString().trim());
+            return (buffer.toString().trim());
         }
         // The only other formatting convention this class obeys is the UNIX one
         // where any occurrence of the field separator or EOL character will
         // be escaped by preceding it with a backslash.
         else {
-            if(field.contains(this.separator)) {
+            if (field.contains(this.separator)) {
                 field = field.replaceAll(this.separator, ("\\\\" + this.separator));
             }
-            if(field.contains("\n")) {
+            if (field.contains("\n")) {
                 field = field.replaceAll("\n", "\\\\\n");
             }
-            return(field);
+            return (field);
         }
     }
 
@@ -641,8 +637,8 @@ public class ToCSV {
      * The main() method contains code that demonstrates how to use the class.
      *
      * @param args An array containing zero, one or more elements all of type
-     *        String. Each element will encapsulate an argument specified by the
-     *        user when running the program from the command prompt.
+     *             String. Each element will encapsulate an argument specified by the
+     *             user when running the program from the command prompt.
      */
     public static void main(String[] args) {
         // Check the number of arguments passed to the main method. There
@@ -667,23 +663,20 @@ public class ToCSV {
         long startTime = System.currentTimeMillis();
         try {
             converter = new ToCSV();
-            if(args.length == 2) {
+            if (args.length == 2) {
                 // Just the Source File/Folder and Destination Folder were
                 // passed to the main method.
                 converter.convertExcelToCSV(args[0], args[1]);
-            }
-            else if(args.length == 3){
+            } else if (args.length == 3) {
                 // The Source File/Folder, Destination Folder and Separator
                 // were passed to the main method.
                 converter.convertExcelToCSV(args[0], args[1], args[2]);
-            }
-            else if(args.length == 4) {
+            } else if (args.length == 4) {
                 // The Source File/Folder, Destination Folder, Separator and
                 // Formatting Convnetion were passed to the main method.
                 converter.convertExcelToCSV(args[0], args[1],
                         args[2], Integer.parseInt(args[3]));
-            }
-            else {
+            } else {
                 // None or more than four parameters were passed so display
                 //a Usage message.
                 System.out.println("Usage: java ToCSV [Source File/Folder] " +
@@ -715,7 +708,7 @@ public class ToCSV {
         // easilly from an exceptional set of circumstances at this point in the
         // program. It should however, ideally be replaced with one or more
         // catch clauses optimised to handle more specific problems.
-        catch(Exception ex) {
+        catch (Exception ex) {
             System.out.println("Caught an: " + ex.getClass().getName());
             System.out.println("Message: " + ex.getMessage());
             System.out.println("Stacktrace follows:.....");
@@ -725,7 +718,7 @@ public class ToCSV {
 
         if (converted) {
             System.out.println("Conversion took " +
-                    (int)((System.currentTimeMillis() - startTime)/1000) + " seconds");
+                    (int) ((System.currentTimeMillis() - startTime) / 1000) + " seconds");
         }
     }
 
@@ -752,14 +745,14 @@ public class ToCSV {
          * @param name An instance of the String class that encapsulates the
          *             name of the file.
          * @return A boolean value that indicates whether the file should be
-         *         included in the array retirned by the call to the listFiles()
-         *         method. In this case true will be returned if the name of the
-         *         file ends with either '.xls' or '.xlsx' and false will be
-         *         returned in all other instances.
+         * included in the array retirned by the call to the listFiles()
+         * method. In this case true will be returned if the name of the
+         * file ends with either '.xls' or '.xlsx' and false will be
+         * returned in all other instances.
          */
         @Override
         public boolean accept(File file, String name) {
-            return(name.endsWith(".xls") || name.endsWith(".xlsx"));
+            return (name.endsWith(".xls") || name.endsWith(".xlsx"));
         }
     }
 }

@@ -27,15 +27,15 @@ import java.util.HashMap;
 import java.io.FileOutputStream;
 
 /**
- * A weekly timesheet created using Apache POI.
+ * A weekly time-sheet created using Apache POI.
  * Usage:
- *  TimesheetDemo -xls|xlsx
+ * TimeSheetDemo -xls|xlsx
  *
  * @author Yegor Kozlov
  */
 public class TimesheetDemo {
     private static final String[] titles = {
-            "Person",	"ID", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
+            "Person", "ID", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun",
             "Total\nHrs", "Overtime\nHrs", "Regular\nHrs"
     };
 
@@ -47,12 +47,12 @@ public class TimesheetDemo {
     public static void main(String[] args) throws Exception {
         Workbook wb;
 
-        if(args.length > 0 && args[0].equals("-xls")) wb = new HSSFWorkbook();
+        if (args.length > 0 && args[0].equals("-xls")) wb = new HSSFWorkbook();
         else wb = new XSSFWorkbook();
 
         Map<String, CellStyle> styles = createStyles(wb);
 
-        Sheet sheet = wb.createSheet("Timesheet");
+        Sheet sheet = wb.createSheet("imeSheet");
         PrintSetup printSetup = sheet.getPrintSetup();
         printSetup.setLandscape(true);
         sheet.setFitToPage(true);
@@ -81,13 +81,13 @@ public class TimesheetDemo {
             Row row = sheet.createRow(rownum++);
             for (int j = 0; j < titles.length; j++) {
                 Cell cell = row.createCell(j);
-                if(j == 9){
+                if (j == 9) {
                     //the 10th cell contains sum over week days, e.g. SUM(C3:I3)
-                    String ref = "C" +rownum+ ":I" + rownum;
-                    cell.setCellFormula("SUM("+ref+")");
+                    String ref = "C" + rownum + ":I" + rownum;
+                    cell.setCellFormula("SUM(" + ref + ")");
                     cell.setCellStyle(styles.get("formula"));
-                } else if (j == 11){
-                    cell.setCellFormula("J" +rownum+ "-K" + rownum);
+                } else if (j == 11) {
+                    cell.setCellFormula("J" + rownum + "-K" + rownum);
                     cell.setCellStyle(styles.get("formula"));
                 } else {
                     cell.setCellStyle(styles.get("cell"));
@@ -107,9 +107,9 @@ public class TimesheetDemo {
 
         for (int j = 2; j < 12; j++) {
             cell = sumRow.createCell(j);
-            String ref = (char)('A' + j) + "3:" + (char)('A' + j) + "12";
+            String ref = (char) ('A' + j) + "3:" + (char) ('A' + j) + "12";
             cell.setCellFormula("SUM(" + ref + ")");
-            if(j >= 9) cell.setCellStyle(styles.get("formula_2"));
+            if (j >= 9) cell.setCellStyle(styles.get("formula_2"));
             else cell.setCellStyle(styles.get("formula"));
         }
         rownum++;
@@ -134,26 +134,26 @@ public class TimesheetDemo {
         for (int i = 0; i < sample_data.length; i++) {
             Row row = sheet.getRow(2 + i);
             for (int j = 0; j < sample_data[i].length; j++) {
-                if(sample_data[i][j] == null) continue;
+                if (sample_data[i][j] == null) continue;
 
-                if(sample_data[i][j] instanceof String) {
-                    row.getCell(j).setCellValue((String)sample_data[i][j]);
+                if (sample_data[i][j] instanceof String) {
+                    row.getCell(j).setCellValue((String) sample_data[i][j]);
                 } else {
-                    row.getCell(j).setCellValue((Double)sample_data[i][j]);
+                    row.getCell(j).setCellValue((Double) sample_data[i][j]);
                 }
             }
         }
 
         //finally set column widths, the width is measured in units of 1/256th of a character width
-        sheet.setColumnWidth(0, 30*256); //30 characters wide
+        sheet.setColumnWidth(0, 30 * 256); //30 characters wide
         for (int i = 2; i < 9; i++) {
-            sheet.setColumnWidth(i, 6*256);  //6 characters wide
+            sheet.setColumnWidth(i, 6 * 256);  //6 characters wide
         }
-        sheet.setColumnWidth(10, 10*256); //10 characters wide
+        sheet.setColumnWidth(10, 10 * 256); //10 characters wide
 
         // Write the output to a file
-        String file = "timesheet.xls";
-        if(wb instanceof XSSFWorkbook) file += "x";
+        String file = "TimeSheet.xls";
+        if (wb instanceof XSSFWorkbook) file += "x";
         FileOutputStream out = new FileOutputStream(file);
         wb.write(out);
         out.close();
@@ -162,11 +162,11 @@ public class TimesheetDemo {
     /**
      * Create a library of cell styles
      */
-    private static Map<String, CellStyle> createStyles(Workbook wb){
+    private static Map<String, CellStyle> createStyles(Workbook wb) {
         Map<String, CellStyle> styles = new HashMap<>();
         CellStyle style;
         Font titleFont = wb.createFont();
-        titleFont.setFontHeightInPoints((short)18);
+        titleFont.setFontHeightInPoints((short) 18);
         titleFont.setBold(true);
         style = wb.createCellStyle();
         style.setAlignment(HorizontalAlignment.CENTER);
@@ -175,7 +175,7 @@ public class TimesheetDemo {
         styles.put("title", style);
 
         Font monthFont = wb.createFont();
-        monthFont.setFontHeightInPoints((short)11);
+        monthFont.setFontHeightInPoints((short) 11);
         monthFont.setColor(IndexedColors.WHITE.getIndex());
         style = wb.createCellStyle();
         style.setAlignment(HorizontalAlignment.CENTER);

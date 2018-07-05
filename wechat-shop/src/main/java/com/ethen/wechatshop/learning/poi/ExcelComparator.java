@@ -41,11 +41,11 @@ import org.apache.poi.xssf.usermodel.XSSFColor;
 
 /**
  * Utility to compare Excel File Contents cell by cell for all sheets.
- *
+ * <p>
  * <p>This utility will be used to compare Excel File Contents cell by cell for all sheets programmatically.</p>
- *
+ * <p>
  * <p>Below are the list of Attribute comparison supported in this version.</p>
- *
+ * <p>
  * <ul>
  * <li>Cell Alignment</li>
  * <li>Cell Border Attributes</li>
@@ -62,11 +62,11 @@ import org.apache.poi.xssf.usermodel.XSSFColor;
  * <li>Number of Rows</li>
  * <li>Number of Sheet</li>
  * </ul>
- *
+ * <p>
  * <p>(Some of the above attribute comparison only work for *.xlsx format currently. In future it can be enhanced.)</p>
- *
+ * <p>
  * <p><b>Usage:</b></p>
- *
+ * <p>
  * <pre>
  * {@code
  *  Workbook wb1 = WorkbookFactory.create(new File("workBook1.xls"));
@@ -94,7 +94,7 @@ public class ExcelComparator {
 
     public static void main(String args[]) throws Exception {
         if (args.length != 2 || !(new File(args[0]).exists()) || !(new File(args[1]).exists())) {
-            System.err.println("java -cp <classpath> "+ExcelComparator.class.getCanonicalName()+" <workbook1.xls/x> <workbook2.xls/x");
+            System.err.println("java -cp <classpath> " + ExcelComparator.class.getCanonicalName() + " <workbook1.xls/x> <workbook2.xls/x");
             System.exit(-1);
         }
         Workbook wb1 = WorkbookFactory.create(new File(args[0]));
@@ -122,7 +122,7 @@ public class ExcelComparator {
         loc2.workbook = wb2;
 
         ExcelComparator excelComparator = new ExcelComparator();
-        excelComparator.compareNumberOfSheets(loc1, loc2 );
+        excelComparator.compareNumberOfSheets(loc1, loc2);
         excelComparator.compareSheetNames(loc1, loc2);
         excelComparator.compareSheetData(loc1, loc2);
 
@@ -176,23 +176,23 @@ public class ExcelComparator {
     private void compareDataInCell(Locator loc1, Locator loc2) {
         if (isCellTypeMatches(loc1, loc2)) {
             final CellType loc1cellType = loc1.cell.getCellTypeEnum();
-            switch(loc1cellType) {
+            switch (loc1cellType) {
                 case BLANK:
                 case STRING:
                 case ERROR:
-                    isCellContentMatches(loc1,loc2);
+                    isCellContentMatches(loc1, loc2);
                     break;
                 case BOOLEAN:
-                    isCellContentMatchesForBoolean(loc1,loc2);
+                    isCellContentMatchesForBoolean(loc1, loc2);
                     break;
                 case FORMULA:
-                    isCellContentMatchesForFormula(loc1,loc2);
+                    isCellContentMatchesForFormula(loc1, loc2);
                     break;
                 case NUMERIC:
                     if (DateUtil.isCellDateFormatted(loc1.cell)) {
-                        isCellContentMatchesForDate(loc1,loc2);
+                        isCellContentMatchesForDate(loc1, loc2);
                     } else {
-                        isCellContentMatchesForNumeric(loc1,loc2);
+                        isCellContentMatchesForNumeric(loc1, loc2);
                     }
                     break;
                 default:
@@ -200,20 +200,20 @@ public class ExcelComparator {
             }
         }
 
-        isCellFillPatternMatches(loc1,loc2);
-        isCellAlignmentMatches(loc1,loc2);
-        isCellHiddenMatches(loc1,loc2);
-        isCellLockedMatches(loc1,loc2);
-        isCellFontFamilyMatches(loc1,loc2);
-        isCellFontSizeMatches(loc1,loc2);
-        isCellFontBoldMatches(loc1,loc2);
-        isCellUnderLineMatches(loc1,loc2);
-        isCellFontItalicsMatches(loc1,loc2);
-        isCellBorderMatches(loc1,loc2,'t');
-        isCellBorderMatches(loc1,loc2,'l');
-        isCellBorderMatches(loc1,loc2,'b');
-        isCellBorderMatches(loc1,loc2,'r');
-        isCellFillBackGroundMatches(loc1,loc2);
+        isCellFillPatternMatches(loc1, loc2);
+        isCellAlignmentMatches(loc1, loc2);
+        isCellHiddenMatches(loc1, loc2);
+        isCellLockedMatches(loc1, loc2);
+        isCellFontFamilyMatches(loc1, loc2);
+        isCellFontSizeMatches(loc1, loc2);
+        isCellFontBoldMatches(loc1, loc2);
+        isCellUnderLineMatches(loc1, loc2);
+        isCellFontItalicsMatches(loc1, loc2);
+        isCellBorderMatches(loc1, loc2, 't');
+        isCellBorderMatches(loc1, loc2, 'l');
+        isCellBorderMatches(loc1, loc2, 'b');
+        isCellBorderMatches(loc1, loc2, 'r');
+        isCellFillBackGroundMatches(loc1, loc2);
     }
 
     /**
@@ -305,7 +305,7 @@ public class ExcelComparator {
 
             if (!name1.equals(name2)) {
                 String str = String.format(Locale.ROOT, "%s\nworkbook1 -> %s [%d] != workbook2 -> %s [%d]",
-                        "Name of the sheets do not match ::", name1, i+1, name2, i+1
+                        "Name of the sheets do not match ::", name1, i + 1, name2, i + 1
                 );
                 listOfDifferences.add(str);
             }
@@ -346,12 +346,13 @@ public class ExcelComparator {
      */
     private void isCellBorderMatches(Locator loc1, Locator loc2, char borderSide) {
         if (!(loc1.cell instanceof XSSFCell)) return;
-        XSSFCellStyle style1 = ((XSSFCell)loc1.cell).getCellStyle();
-        XSSFCellStyle style2 = ((XSSFCell)loc2.cell).getCellStyle();
+        XSSFCellStyle style1 = ((XSSFCell) loc1.cell).getCellStyle();
+        XSSFCellStyle style2 = ((XSSFCell) loc2.cell).getCellStyle();
         boolean b1, b2;
         String borderName;
         switch (borderSide) {
-            case 't': default:
+            case 't':
+            default:
                 b1 = style1.getBorderBottomEnum() == BorderStyle.THIN;
                 b2 = style2.getBorderTopEnum() == BorderStyle.THIN;
                 borderName = "TOP";
@@ -375,8 +376,8 @@ public class ExcelComparator {
         if (b1 != b2) {
             addMessage(loc1, loc2,
                     "Cell Border Attributes does not Match ::",
-                    (b1 ? "" : "NOT ")+borderName+" BORDER",
-                    (b2 ? "" : "NOT ")+borderName+" BORDER"
+                    (b1 ? "" : "NOT ") + borderName + " BORDER",
+                    (b2 ? "" : "NOT ") + borderName + " BORDER"
             );
         }
     }
@@ -389,7 +390,7 @@ public class ExcelComparator {
         String str1 = loc1.cell.getRichStringCellValue().getString();
         String str2 = loc2.cell.getRichStringCellValue().getString();
         if (!str1.equals(str2)) {
-            addMessage(loc1,loc2,CELL_DATA_DOES_NOT_MATCH,str1,str2);
+            addMessage(loc1, loc2, CELL_DATA_DOES_NOT_MATCH, str1, str2);
         }
     }
 
@@ -400,7 +401,7 @@ public class ExcelComparator {
         boolean b1 = loc1.cell.getBooleanCellValue();
         boolean b2 = loc2.cell.getBooleanCellValue();
         if (b1 != b2) {
-            addMessage(loc1,loc2,CELL_DATA_DOES_NOT_MATCH,Boolean.toString(b1),Boolean.toString(b2));
+            addMessage(loc1, loc2, CELL_DATA_DOES_NOT_MATCH, Boolean.toString(b1), Boolean.toString(b2));
         }
     }
 
@@ -442,7 +443,7 @@ public class ExcelComparator {
 
     private String getCellFillBackground(Locator loc) {
         Color col = loc.cell.getCellStyle().getFillForegroundColorColor();
-        return (col instanceof XSSFColor) ? ((XSSFColor)col).getARGBHex() : "NO COLOR";
+        return (col instanceof XSSFColor) ? ((XSSFColor) col).getARGBHex() : "NO COLOR";
     }
 
     /**
@@ -455,6 +456,7 @@ public class ExcelComparator {
             addMessage(loc1, loc2, "Cell Fill Color does not Match ::", col1, col2);
         }
     }
+
     /**
      * Checks if cell fill pattern matches.
      */
@@ -476,13 +478,13 @@ public class ExcelComparator {
      */
     private void isCellFontBoldMatches(Locator loc1, Locator loc2) {
         if (!(loc1.cell instanceof XSSFCell)) return;
-        boolean b1 = ((XSSFCell)loc1.cell).getCellStyle().getFont().getBold();
-        boolean b2 = ((XSSFCell)loc2.cell).getCellStyle().getFont().getBold();
+        boolean b1 = ((XSSFCell) loc1.cell).getCellStyle().getFont().getBold();
+        boolean b2 = ((XSSFCell) loc2.cell).getCellStyle().getFont().getBold();
         if (b1 != b2) {
             addMessage(loc1, loc2,
                     CELL_FONT_ATTRIBUTES_DOES_NOT_MATCH,
-                    (b1 ? "" : "NOT ")+"BOLD",
-                    (b2 ? "" : "NOT ")+"BOLD"
+                    (b1 ? "" : "NOT ") + "BOLD",
+                    (b2 ? "" : "NOT ") + "BOLD"
             );
         }
     }
@@ -493,8 +495,8 @@ public class ExcelComparator {
     private void isCellFontFamilyMatches(Locator loc1, Locator loc2) {
         // TODO: Check for NPEs
         if (!(loc1.cell instanceof XSSFCell)) return;
-        String family1 = ((XSSFCell)loc1.cell).getCellStyle().getFont().getFontName();
-        String family2 = ((XSSFCell)loc2.cell).getCellStyle().getFont().getFontName();
+        String family1 = ((XSSFCell) loc1.cell).getCellStyle().getFont().getFontName();
+        String family2 = ((XSSFCell) loc2.cell).getCellStyle().getFont().getFontName();
         if (!family1.equals(family2)) {
             addMessage(loc1, loc2, "Cell Font Family does not Match ::", family1, family2);
         }
@@ -505,13 +507,13 @@ public class ExcelComparator {
      */
     private void isCellFontItalicsMatches(Locator loc1, Locator loc2) {
         if (!(loc1.cell instanceof XSSFCell)) return;
-        boolean b1 = ((XSSFCell)loc1.cell).getCellStyle().getFont().getItalic();
-        boolean b2 = ((XSSFCell)loc2.cell).getCellStyle().getFont().getItalic();
+        boolean b1 = ((XSSFCell) loc1.cell).getCellStyle().getFont().getItalic();
+        boolean b2 = ((XSSFCell) loc2.cell).getCellStyle().getFont().getItalic();
         if (b1 != b2) {
             addMessage(loc1, loc2,
                     CELL_FONT_ATTRIBUTES_DOES_NOT_MATCH,
-                    (b1 ? "" : "NOT ")+"ITALICS",
-                    (b2 ? "" : "NOT ")+"ITALICS"
+                    (b1 ? "" : "NOT ") + "ITALICS",
+                    (b2 ? "" : "NOT ") + "ITALICS"
             );
         }
     }
@@ -521,8 +523,8 @@ public class ExcelComparator {
      */
     private void isCellFontSizeMatches(Locator loc1, Locator loc2) {
         if (!(loc1.cell instanceof XSSFCell)) return;
-        short size1 = ((XSSFCell)loc1.cell).getCellStyle().getFont().getFontHeightInPoints();
-        short size2 = ((XSSFCell)loc2.cell).getCellStyle().getFont().getFontHeightInPoints();
+        short size1 = ((XSSFCell) loc1.cell).getCellStyle().getFont().getFontHeightInPoints();
+        short size2 = ((XSSFCell) loc2.cell).getCellStyle().getFont().getFontHeightInPoints();
         if (size1 != size2) {
             addMessage(loc1, loc2,
                     "Cell Font Size does not Match ::",
@@ -541,8 +543,8 @@ public class ExcelComparator {
         if (b1 != b2) {
             addMessage(loc1, loc2,
                     "Cell Visibility does not Match ::",
-                    (b1 ? "" : "NOT ")+"HIDDEN",
-                    (b2 ? "" : "NOT ")+"HIDDEN"
+                    (b1 ? "" : "NOT ") + "HIDDEN",
+                    (b2 ? "" : "NOT ") + "HIDDEN"
             );
         }
     }
@@ -556,8 +558,8 @@ public class ExcelComparator {
         if (b1 != b2) {
             addMessage(loc1, loc2,
                     "Cell Protection does not Match ::",
-                    (b1 ? "" : "NOT ")+"LOCKED",
-                    (b2 ? "" : "NOT ")+"LOCKED"
+                    (b1 ? "" : "NOT ") + "LOCKED",
+                    (b2 ? "" : "NOT ") + "LOCKED"
             );
         }
     }
@@ -582,13 +584,13 @@ public class ExcelComparator {
     private void isCellUnderLineMatches(Locator loc1, Locator loc2) {
         // TOOO: distinguish underline type
         if (!(loc1.cell instanceof XSSFCell)) return;
-        byte b1 = ((XSSFCell)loc1.cell).getCellStyle().getFont().getUnderline();
-        byte b2 = ((XSSFCell)loc2.cell).getCellStyle().getFont().getUnderline();
+        byte b1 = ((XSSFCell) loc1.cell).getCellStyle().getFont().getUnderline();
+        byte b2 = ((XSSFCell) loc2.cell).getCellStyle().getFont().getUnderline();
         if (b1 != b2) {
             addMessage(loc1, loc2,
                     CELL_FONT_ATTRIBUTES_DOES_NOT_MATCH,
-                    (b1 == 1 ? "" : "NOT ")+"UNDERLINE",
-                    (b2 == 1 ? "" : "NOT ")+"UNDERLINE"
+                    (b1 == 1 ? "" : "NOT ") + "UNDERLINE",
+                    (b2 == 1 ? "" : "NOT ") + "UNDERLINE"
             );
         }
     }

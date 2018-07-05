@@ -41,7 +41,7 @@ import org.apache.xmlbeans.XmlException;
 
 /**
  * Loads embedded resources from Workbooks. Code taken from the website:
- *  https://poi.apache.org/spreadsheet/quick-guide.html#Embedded
+ * https://poi.apache.org/spreadsheet/quick-guide.html#Embedded
  */
 public class LoadEmbedded {
     public static void main(String[] args) throws IOException, EncryptedDocumentException, OpenXML4JException, XmlException {
@@ -51,12 +51,10 @@ public class LoadEmbedded {
 
     public static void loadEmbedded(Workbook wb) throws IOException, InvalidFormatException, OpenXML4JException, XmlException {
         if (wb instanceof HSSFWorkbook) {
-            loadEmbedded((HSSFWorkbook)wb);
-        }
-        else if (wb instanceof XSSFWorkbook) {
-            loadEmbedded((XSSFWorkbook)wb);
-        }
-        else {
+            loadEmbedded((HSSFWorkbook) wb);
+        } else if (wb instanceof XSSFWorkbook) {
+            loadEmbedded((XSSFWorkbook) wb);
+        } else {
             throw new IllegalArgumentException(wb.getClass().getName());
         }
     }
@@ -73,12 +71,12 @@ public class LoadEmbedded {
                 DirectoryNode dn = (DirectoryNode) obj.getDirectory();
                 HWPFDocument embeddedWordDocument = new HWPFDocument(dn);
                 embeddedWordDocument.close();
-            }  else if (oleName.equals("Presentation")) {
+            } else if (oleName.equals("Presentation")) {
                 DirectoryNode dn = (DirectoryNode) obj.getDirectory();
-                SlideShow<?,?> embeddedSlieShow = new HSLFSlideShow(dn);
+                SlideShow<?, ?> embeddedSlieShow = new HSLFSlideShow(dn);
                 embeddedSlieShow.close();
             } else {
-                if(obj.hasDirectoryEntry()){
+                if (obj.hasDirectoryEntry()) {
                     // The DirectoryEntry is a DocumentNode. Examine its entries to find out what it is
                     DirectoryNode dn = (DirectoryNode) obj.getDirectory();
                     for (Entry entry : dn) {

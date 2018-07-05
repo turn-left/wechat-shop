@@ -54,16 +54,16 @@ public class SSPerformanceTest {
         boolean saveFile = parseInt(args[3], "Failed to parse saveFile value as integer") != 0;
 
         boolean warmup = false;
-        for(int arg = 4; arg < args.length;arg++) {
-            if(args[arg].equals("--unsynchronized-xmlbeans")) {
+        for (int arg = 4; arg < args.length; arg++) {
+            if (args[arg].equals("--unsynchronized-xmlbeans")) {
                 POIXMLTypeLoader.DEFAULT_XML_OPTIONS.setUnsynchronized();
             }
-            if(args[arg].equals("--with-warmup-run")) {
+            if (args[arg].equals("--with-warmup-run")) {
                 warmup = true;
             }
         }
 
-        if(warmup) {
+        if (warmup) {
             System.out.println("Performing a warmup run first");
             runWithArgs(type, rows, cols, saveFile);
         }
@@ -72,7 +72,7 @@ public class SSPerformanceTest {
         runWithArgs(type, rows, cols, saveFile);
         long timeFinished = System.currentTimeMillis();
 
-        System.out.printf("Elapsed %.2f seconds for arguments %s\n", ((double)timeFinished - timeStarted) / 1000, Arrays.toString(args));
+        System.out.printf("Elapsed %.2f seconds for arguments %s\n", ((double) timeFinished - timeStarted) / 1000, Arrays.toString(args));
     }
 
     private static void runWithArgs(String type, int rows, int cols, boolean saveFile) throws IOException {
@@ -121,7 +121,7 @@ public class SSPerformanceTest {
     private static double populateCell(Map<String, CellStyle> styles, double value, Calendar calendar, int rowIndex, Row row, int colIndex) {
         Cell cell = row.createCell(colIndex);
         String address = new CellReference(cell).formatAsString();
-        switch (colIndex){
+        switch (colIndex) {
             case 0:
                 // column A: default number format
                 cell.setCellValue(value++);
@@ -190,7 +190,7 @@ public class SSPerformanceTest {
         styles.put("header", style);
 
         Font monthFont = wb.createFont();
-        monthFont.setFontHeightInPoints((short)12);
+        monthFont.setFontHeightInPoints((short) 12);
         monthFont.setColor(IndexedColors.RED.getIndex());
         monthFont.setBold(true);
         style = wb.createCellStyle();
@@ -202,7 +202,7 @@ public class SSPerformanceTest {
         styles.put("red-bold", style);
 
         String[] nfmt = {"#,##0.00", "$#,##0.00", "m/d/yyyy"};
-        for(String fmt : nfmt){
+        for (String fmt : nfmt) {
             style = wb.createCellStyle();
             style.setDataFormat(wb.createDataFormat().getFormat(fmt));
             styles.put(fmt, style);

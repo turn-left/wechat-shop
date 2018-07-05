@@ -28,9 +28,9 @@ import java.io.FileOutputStream;
 
 /**
  * Simple Loan Calculator. Demonstrates advance usage of cell formulas and named ranges.
- *
+ * <p>
  * Usage:
- *   LoanCalculator -xls|xlsx
+ * LoanCalculator -xls|xlsx
  *
  * @author Yegor Kozlov
  */
@@ -39,7 +39,7 @@ public class LoanCalculator {
     public static void main(String[] args) throws Exception {
         Workbook wb;
 
-        if(args.length > 0 && args[0].equals("-xls")) wb = new HSSFWorkbook();
+        if (args.length > 0 && args[0].equals("-xls")) wb = new HSSFWorkbook();
         else wb = new XSSFWorkbook();
 
         Map<String, CellStyle> styles = createStyles(wb);
@@ -52,13 +52,13 @@ public class LoanCalculator {
         sheet.setFitToPage(true);
         sheet.setHorizontallyCenter(true);
 
-        sheet.setColumnWidth(0, 3*256);
-        sheet.setColumnWidth(1, 3*256);
-        sheet.setColumnWidth(2, 11*256);
-        sheet.setColumnWidth(3, 14*256);
-        sheet.setColumnWidth(4, 14*256);
-        sheet.setColumnWidth(5, 14*256);
-        sheet.setColumnWidth(6, 14*256);
+        sheet.setColumnWidth(0, 3 * 256);
+        sheet.setColumnWidth(1, 3 * 256);
+        sheet.setColumnWidth(2, 11 * 256);
+        sheet.setColumnWidth(3, 14 * 256);
+        sheet.setColumnWidth(4, 14 * 256);
+        sheet.setColumnWidth(5, 14 * 256);
+        sheet.setColumnWidth(6, 14 * 256);
 
         createNames(wb);
 
@@ -140,7 +140,7 @@ public class LoanCalculator {
 
         // Write the output to a file
         String file = "loan-calculator.xls";
-        if(wb instanceof XSSFWorkbook) file += "x";
+        if (wb instanceof XSSFWorkbook) file += "x";
         FileOutputStream out = new FileOutputStream(file);
         wb.write(out);
         out.close();
@@ -149,12 +149,12 @@ public class LoanCalculator {
     /**
      * cell styles used for formatting calendar sheets
      */
-    private static Map<String, CellStyle> createStyles(Workbook wb){
+    private static Map<String, CellStyle> createStyles(Workbook wb) {
         Map<String, CellStyle> styles = new HashMap<>();
 
         CellStyle style;
         Font titleFont = wb.createFont();
-        titleFont.setFontHeightInPoints((short)14);
+        titleFont.setFontHeightInPoints((short) 14);
         titleFont.setFontName("Trebuchet MS");
         style = wb.createCellStyle();
         style.setFont(titleFont);
@@ -163,7 +163,7 @@ public class LoanCalculator {
         styles.put("title", style);
 
         Font itemFont = wb.createFont();
-        itemFont.setFontHeightInPoints((short)9);
+        itemFont.setFontHeightInPoints((short) 9);
         itemFont.setFontName("Trebuchet MS");
         style = wb.createCellStyle();
         style.setAlignment(HorizontalAlignment.LEFT);
@@ -263,7 +263,7 @@ public class LoanCalculator {
     }
 
     //define named ranges for the inputs and formulas
-    public static void createNames(Workbook wb){
+    public static void createNames(Workbook wb) {
         Name name;
 
         name = wb.createName();

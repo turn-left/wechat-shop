@@ -36,7 +36,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 /**
  * Excel Border Drawing - examples
- *
+ * <p>
  * <p>
  * Partly based on the code snippets from
  * org.apache.poi.ss.examples.ConditionalFormats

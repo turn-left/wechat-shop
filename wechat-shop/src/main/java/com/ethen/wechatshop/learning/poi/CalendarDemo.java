@@ -43,9 +43,9 @@ public class CalendarDemo {
             "Sunday", "Monday", "Tuesday",
             "Wednesday", "Thursday", "Friday", "Saturday"};
 
-    private static final String[]  months = {
-            "January", "February", "March","April", "May", "June","July", "August",
-            "September","October", "November", "December"};
+    private static final String[] months = {
+            "January", "February", "March", "April", "May", "June", "July", "August",
+            "September", "October", "November", "December"};
 
     public static void main(String[] args) throws Exception {
 
@@ -147,14 +147,14 @@ public class CalendarDemo {
     /**
      * cell styles used for formatting calendar sheets
      */
-    private static Map<String, CellStyle> createStyles(Workbook wb){
+    private static Map<String, CellStyle> createStyles(Workbook wb) {
         Map<String, CellStyle> styles = new HashMap<>();
 
         short borderColor = IndexedColors.GREY_50_PERCENT.getIndex();
 
         CellStyle style;
         Font titleFont = wb.createFont();
-        titleFont.setFontHeightInPoints((short)48);
+        titleFont.setFontHeightInPoints((short) 48);
         titleFont.setColor(IndexedColors.DARK_BLUE.getIndex());
         style = wb.createCellStyle();
         style.setAlignment(HorizontalAlignment.CENTER);
@@ -163,7 +163,7 @@ public class CalendarDemo {
         styles.put("title", style);
 
         Font monthFont = wb.createFont();
-        monthFont.setFontHeightInPoints((short)12);
+        monthFont.setFontHeightInPoints((short) 12);
         monthFont.setColor(IndexedColors.WHITE.getIndex());
         monthFont.setBold(true);
         style = wb.createCellStyle();
@@ -175,7 +175,7 @@ public class CalendarDemo {
         styles.put("month", style);
 
         Font dayFont = wb.createFont();
-        dayFont.setFontHeightInPoints((short)14);
+        dayFont.setFontHeightInPoints((short) 14);
         dayFont.setBold(true);
         style = wb.createCellStyle();
         style.setAlignment(HorizontalAlignment.LEFT);
