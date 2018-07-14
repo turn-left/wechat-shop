@@ -7,7 +7,7 @@
  ##### 4.部署流程： <br>
   * step1--clone工程到本地，推荐使用`IDEA`，数据库是`mysql` <br>
   * step2--推荐安装`redis`   <br>
-  * step3--在mysql中创建数据库 morning,执行工程 resources/database/`table_data_mysql.sql`文件   <br>
+  * step3--在mysql中创建数据库 morning,在数据库中执行工程目录下 resources/database/`table_data_mysql.sql`脚本文件  <br>
   * step4--运行WechatShopApplication.java启动spring-boot工程。访问路径localhost(也可以修改WINDOWS的hosts文件改成自己的虚拟域名)  <br>
   
 
