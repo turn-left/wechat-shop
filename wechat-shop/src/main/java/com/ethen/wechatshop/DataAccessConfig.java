@@ -8,12 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.Primary;
 import org.springframework.core.io.support.PathMatchingResourcePatternResolver;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceAutoConfiguration;
 import org.springframework.jdbc.datasource.DataSourceTransactionManager;
 import org.springframework.transaction.support.TransactionTemplate;
-import redis.clients.jedis.Transaction;
 
 import javax.sql.DataSource;
 
@@ -88,7 +86,7 @@ public class DataAccessConfig {
     }
 
 
-    @Bean(name = "mysqlSession")
+    @Bean(name = "sqlSession")
     public SqlSessionTemplate sqlSessionTemplate(SqlSessionFactory sqlSessionFactoryMysql) {
         SqlSessionTemplate sqlSession = new SqlSessionTemplate(sqlSessionFactoryMysql);
         return sqlSession;
@@ -98,45 +96,45 @@ public class DataAccessConfig {
     /**
      * oracle数据源
      */
-    @Bean(name = "orclDataSource", initMethod = "init", destroyMethod = "close")
-    public DataSource oracleDataSource() {
-        //配置数据库的参数
-        DruidDataSource druidDataSource = new DruidDataSource();
-        druidDataSource.setDriverClassName(props.getOracleDriver());
-        druidDataSource.setUrl(props.getOracleUrl());
-        druidDataSource.setUsername(props.getOracleUser());
-        druidDataSource.setPassword(props.getOraclePwd());
-        druidDataSource.setMinIdle(Integer.parseInt(props.getMinIdle()));
-        druidDataSource.setMaxActive(Integer.parseInt(props.getMaxActive()));
-        druidDataSource.setMaxWait(Integer.parseInt(props.getMaxWait()));
-        druidDataSource.setTimeBetweenEvictionRunsMillis(Integer.parseInt(props.getTimeBetweenEvictionRunsMillis()));
-        druidDataSource.setMinEvictableIdleTimeMillis(Integer.parseInt(props.getMinEvictableIdleTimeMillis()));
-        return druidDataSource;
-    }
+//    @Bean(name = "orclDataSource", initMethod = "init", destroyMethod = "close")
+//    public DataSource oracleDataSource() {
+//        //配置数据库的参数
+//        DruidDataSource druidDataSource = new DruidDataSource();
+//        druidDataSource.setDriverClassName(props.getOracleDriver());
+//        druidDataSource.setUrl(props.getOracleUrl());
+//        druidDataSource.setUsername(props.getOracleUser());
+//        druidDataSource.setPassword(props.getOraclePwd());
+//        druidDataSource.setMinIdle(Integer.parseInt(props.getMinIdle()));
+//        druidDataSource.setMaxActive(Integer.parseInt(props.getMaxActive()));
+//        druidDataSource.setMaxWait(Integer.parseInt(props.getMaxWait()));
+//        druidDataSource.setTimeBetweenEvictionRunsMillis(Integer.parseInt(props.getTimeBetweenEvictionRunsMillis()));
+//        druidDataSource.setMinEvictableIdleTimeMillis(Integer.parseInt(props.getMinEvictableIdleTimeMillis()));
+//        return druidDataSource;
+//    }
 
 
-    @Bean(name = "sqlSessionFactoryOrcl")
-    public SqlSessionFactory sqlSessionFactoryOrcl(DataSource orclDataSource) throws Exception {
-        SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
-        factoryBean.setDataSource(orclDataSource);
-        System.out.println();
-        factoryBean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource("classpath:mybatis-config.xml"));
-        factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
-        return factoryBean.getObject();
-    }
+//    @Bean(name = "sqlSessionFactoryOrcl")
+//    public SqlSessionFactory sqlSessionFactoryOrcl(DataSource orclDataSource) throws Exception {
+//        SqlSessionFactoryBean factoryBean = new SqlSessionFactoryBean();
+//        factoryBean.setDataSource(orclDataSource);
+//        System.out.println();
+//        factoryBean.setConfigLocation(new PathMatchingResourcePatternResolver().getResource("classpath:mybatis-config.xml"));
+//        factoryBean.setMapperLocations(new PathMatchingResourcePatternResolver().getResources("classpath:mapper/*.xml"));
+//        return factoryBean.getObject();
+//    }
 
 
-    @Bean(name = "orclSession")
-    public SqlSessionTemplate sqlSessionTemplateOrcl(SqlSessionFactory sqlSessionFactoryOrcl) {
-        SqlSessionTemplate sqlSession = new SqlSessionTemplate(sqlSessionFactoryOrcl);
-        return sqlSession;
-    }
+//    @Bean(name = "orclSession")
+//    public SqlSessionTemplate sqlSessionTemplateOrcl(SqlSessionFactory sqlSessionFactoryOrcl) {
+//        SqlSessionTemplate sqlSession = new SqlSessionTemplate(sqlSessionFactoryOrcl);
+//        return sqlSession;
+//    }
 
 
     //*默认值
-    @Bean(name = "sqlSession")
-    public SqlSessionTemplate sqlSessionTemplateDefault(SqlSessionFactory sqlSessionFactoryOrcl) {
-        return new SqlSessionTemplate(sqlSessionFactoryOrcl);
-    }
+//    @Bean(name = "sqlSession")
+//    public SqlSessionTemplate sqlSessionTemplateDefault(SqlSessionFactory sqlSessionFactoryOrcl) {
+//        return new SqlSessionTemplate(sqlSessionFactoryOrcl);
+//    }
 
 }

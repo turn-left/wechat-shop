@@ -1,6 +1,7 @@
 package com.ethen.wechatshop;
 
 import com.ethen.wechatshop.cms.vo.CmsUser;
+import org.joda.time.DateTime;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -11,6 +12,7 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import java.net.InetAddress;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -47,5 +49,6 @@ public class WechatShopApplication implements CommandLineRunner {
 //		List<CmsUser> userList = sqlSession.selectList("selectUserInfoLIst");
 //		System.err.println("查询mysql表morning.cms_user: " + cmsList);
 //		System.err.println("查询oracle: " + userList);
+		System.err.println(new Date());
 	}
 }
